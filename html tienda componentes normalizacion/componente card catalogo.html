@@ -196,14 +196,33 @@
     border-radius: 0 0 8px 8px;
     overflow: hidden;
     transition: background 0.3s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-    transform: translateY(20px) scale(0.95);
     box-shadow: 0 0 0 rgba(30, 199, 115, 0);
+    border: 2px solid #e9ecef;
+    border-top: none;
+    position: relative;
+}
+
+.icontec-card-format-table::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #0073aa 0%, #1ec773 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .icontec-card-link:hover .icontec-card-format-table {
     background: #e8f5e8;
     transform: translateY(0) scale(1);
     box-shadow: 0 4px 12px rgba(30, 199, 115, 0.1);
+    border-color: #1ec773;
+}
+
+.icontec-card-link:hover .icontec-card-format-table::after {
+    opacity: 1;
 }
 
 .format-option {
@@ -232,7 +251,25 @@
 }
 
 .format-option:last-child {
-    border-bottom: none;
+    border-bottom: 3px solid #0073aa;
+    border-radius: 0 0 6px 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.format-option:last-child::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1ec773, #0073aa);
+    transition: width 0.4s ease;
+}
+
+.icontec-card-link:hover .format-option:last-child::after {
+    width: 100%;
 }
 
 .format-option i {
