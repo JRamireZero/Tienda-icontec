@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
-  <title>Carrusel de Educación </title>
+  <title>Catálogo de Educación – Carrusel</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
   <!-- Bootstrap CSS -->
@@ -36,26 +36,42 @@
       color: #333;
     }
 
-    /* Carrusel contenedor */
+    /* Botón pausa/play */
+    #carousel-pause {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #1ec773;
+      border: none;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* Carrusel */
     .carousel-container {
-      position: relative;
-      max-width: 1200px;
-      margin: auto;
-      overflow: hidden;
       display: flex;
       align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
     }
+
     .carousel-wrapper {
       overflow: hidden;
       flex: 1;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-      will-change: transform;
+      margin: 0 16px;
     }
 
-    /* Flechas fuera de las cards */
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      transition: transform 0.5s ease;
+    }
+
     .carousel-btn {
       background: rgba(0,0,0,0.5);
       border: none;
@@ -67,28 +83,29 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 2;
+      flex-shrink: 0;
     }
-    .carousel-btn.prev { margin-right: 10px; }
-    .carousel-btn.next { margin-left: 10px; }
 
-    /* Cada “col-card” ocupa 25% del ancho visible */
+    /* Cada tarjeta ocupa un ancho dinámico para mostrar siempre 4 completas */
     .col-card {
-      flex: 0 0 25%;
-      padding: 0 0.75rem;
-      box-sizing: border-box;
+      flex: 0 0 auto;
     }
-    @media (max-width: 992px) { .col-card { flex:0 0 33.333%; } }
-    @media (max-width: 768px) { .col-card { flex:0 0 50%;    } }
-    @media (max-width: 576px) { .col-card { flex:0 0 100%;   } }
 
-    /* TARJETA */
-    .icontec-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      max-width: 100%;
+    @media (min-width: 992px) {
+      .col-card { width: calc((100% - 3*16px)/4); }
     }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .col-card { width: calc((100% - 2*16px)/3); }
+    }
+    @media (min-width: 576px) and (max-width: 767px) {
+      .col-card { width: calc((100% - 1*16px)/2); }
+    }
+    @media (max-width: 575px) {
+      .col-card { width: 100%; }
+    }
+
+    /* ====== ESTILOS DE LA CARD ====== */
+    .icontec-card-link { display: block; text-decoration: none; color: inherit; }
     .icontec-card {
       position: relative;
       overflow: hidden;
@@ -96,40 +113,35 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: transform .3s, box-shadow .3s, border-bottom .3s;
-      transform-origin: top center; /* escala desde arriba */
+      transform-origin: top center;
     }
     .icontec-card-link:hover .icontec-card {
       transform: translateY(-12px) scale(1.03);
       box-shadow: 0 8px 24px rgba(0,0,0,0.18);
       border-bottom: 3px solid #1ec773;
     }
-
-    .icontec-card-img-container {
-      position: relative; width:100%; overflow:hidden;
-    }
+    .icontec-card-img-container { position: relative; overflow: hidden; }
     .icontec-card-img {
-      width:100%; display:block;
-      border-radius:8px 8px 0 0;
+      width: 100%; display: block;
+      border-radius: 8px 8px 0 0;
       transition: filter .3s, transform .3s;
     }
     .icontec-card-link:hover .icontec-card-img {
       filter: brightness(0.5) grayscale(10%);
       transform: scale(1.05);
     }
-
     .icontec-card-overlay {
-      position:absolute; top:0; left:0;
-      width:100%; height:100%;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; pointer-events:none;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
       clip-path: circle(0% at 50% 0);
-      transition:
-        clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94),
-        opacity .3s ease .1s;
+      transition: clip-path .6s cubic-bezier(.25,.46,.45,.94),
+                  opacity .3s ease .1s;
     }
     .icontec-card-link:hover .icontec-card-overlay {
-      opacity:1; pointer-events:auto;
+      opacity: 1; pointer-events: auto;
       clip-path: circle(120% at 50% 0);
     }
     .icontec-card-overlay-title {
@@ -138,76 +150,77 @@
       font-weight: 700;
       text-align: center;
     }
-
     .icontec-card-category {
-      position:absolute; top:15px; left:8px;
+      position: absolute; top: 8px; left: 8px;
       background: linear-gradient(135deg,#1ec773,#0fa958);
-      color:#fff;
-      padding:4px 8px;
-      font-size:.75rem;
-      font-weight:600;
-      border-radius:12px;
-      text-transform:uppercase;
-      box-shadow:0 2px 8px rgba(30,199,115,0.3);
-      z-index: 3;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: .75rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(30,199,115,0.3);
+      z-index: 2;
     }
-
     .icontec-card-content {
-      padding:1rem; text-align:left;
-      background-color: #e9f7fd;
+      padding: 1rem; text-align: left;
+       background-color: #e9f7fd;
     }
     .info-tags {
-      display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap;
+      display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;
     }
     .tag-modalidad, .tag-gratis {
-      font-size:.75rem; font-weight:600;
-      padding:4px 8px; border-radius:12px; color:#fff;
+      font-size: .75rem; font-weight: 600;
+      padding: 4px 8px; border-radius: 12px; color: #fff;
     }
-    .tag-modalidad { background:#1565c0; }
-    .tag-gratis   { background:#FF4841; }
-
+    .tag-modalidad { background: #1565c0; }
+    .tag-gratis   { background: #FF4841; }
     .icontec-card-title {
-      font-size:1.1rem; font-weight:600;
-      margin-bottom:8px; color:#222;
+      font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: #222;
     }
     .icontec-card-content p {
-      margin:4px 0; font-size:.9rem; color:#333;
+      margin: 4px 0; font-size: .9rem; color: #333;
     }
-
     .filter-course-card--buttons {
-      text-align:center; margin-top:12px;
+      text-align: center; margin-top: 12px;
     }
     .btn-compact {
-      background:#1ec773; color:#fff;
-      padding:6px 12px; font-size:.85rem;
-      border:none; border-radius:4px;
-      font-weight:500;
-      display:inline-flex; align-items:center; gap:4px;
+      background: #1ec773; color: #fff;
+      padding: 6px 12px; font-size: .85rem;
+      border: none; border-radius: 4px;
+      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 4px;
       transition: background .2s, transform .2s;
     }
     .btn-compact:hover {
-      background:#0fa958; transform:scale(1.05);
+      background: #0fa958; transform: scale(1.05);
     }
   </style>
 </head>
 
 <body>
-  <h1>Carrusel de Educación </h1>
+  <h1>Catálogo de Educación</h1>
 
+  <!-- pausa/play -->
+  <button id="carousel-pause" aria-label="Pausa/Play">
+    <i class="bi bi-pause-fill"></i>
+  </button>
+
+  <!-- Carrusel -->
   <div class="carousel-container">
-    <button class="carousel-btn prev">
-      <i class="bi bi-chevron-left"></i>
-    </button>
+    <button class="carousel-btn prev"><i class="bi bi-chevron-left"></i></button>
     <div class="carousel-wrapper">
       <div class="carousel-track">
         <!-- 1 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg"
-                     alt="Normatividad Técnica"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg"
+                  alt="Normatividad Técnica"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Normatividad Técnica</span>
                 </div>
@@ -233,29 +246,27 @@
         </div>
         <!-- 2 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
-                     alt="Gestión de Calidad"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg"
+                  alt="Gestión de Calidad"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Gestión de Calidad</span>
                 </div>
               </div>
               <div class="icontec-card-category">Curso</div>
               <div class="icontec-card-content">
-                <div class="info-tags">
-                  <span class="tag-modalidad">Presencial</span>
-                </div>
+                <div class="info-tags"><span class="tag-modalidad">Presencial</span></div>
                 <div class="icontec-card-title">Gestión de Calidad</div>
                 <p>Inicio: 15 octubre</p>
                 <p>Duración: 6 semanas</p>
                 <p>Horario: Mar–Sáb, 9 a.m.–1 p.m.</p>
                 <div class="filter-course-card--buttons">
-                  <button class="btn-compact">
-                    <i class="bi bi-cart3"></i> Agregar
-                  </button>
+                  <button class="btn-compact"><i class="bi bi-cart3"></i> Agregar</button>
                 </div>
               </div>
             </div>
@@ -263,29 +274,27 @@
         </div>
         <!-- 3 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg"
-                     alt="Gestión Documental"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
+                  alt="Gestión Documental"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Gestión Documental</span>
                 </div>
               </div>
               <div class="icontec-card-category">Programa</div>
               <div class="icontec-card-content">
-                <div class="info-tags">
-                  <span class="tag-modalidad">Híbrida</span>
-                </div>
+                <div class="info-tags"><span class="tag-modalidad">Híbrida</span></div>
                 <div class="icontec-card-title">Gestión Documental</div>
                 <p>Inicio: 01 noviembre</p>
                 <p>Duración: 10 semanas</p>
                 <p>Horario: Mié–Dom, 2–6 p.m.</p>
                 <div class="filter-course-card--buttons">
-                  <button class="btn-compact">
-                    <i class="bi bi-cart3"></i> Agregar
-                  </button>
+                  <button class="btn-compact"><i class="bi bi-cart3"></i> Agregar</button>
                 </div>
               </div>
             </div>
@@ -293,29 +302,27 @@
         </div>
         <!-- 4 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
-                     alt="Auditoría Interna"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg"
+                  alt="Auditoría Interna"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Auditoría Interna</span>
                 </div>
               </div>
               <div class="icontec-card-category">Diplomado</div>
               <div class="icontec-card-content">
-                <div class="info-tags">
-                  <span class="tag-modalidad">Virtual</span>
-                </div>
+                <div class="info-tags"><span class="tag-modalidad">Virtual</span></div>
                 <div class="icontec-card-title">Auditoría Interna</div>
                 <p>Inicio: 22 octubre</p>
                 <p>Duración: 8 semanas</p>
                 <p>Horario: Lun–Vie, 5–7 p.m.</p>
                 <div class="filter-course-card--buttons">
-                  <button class="btn-compact">
-                    <i class="bi bi-cart3"></i> Agregar
-                  </button>
+                  <button class="btn-compact"><i class="bi bi-cart3"></i> Agregar</button>
                 </div>
               </div>
             </div>
@@ -323,29 +330,27 @@
         </div>
         <!-- 5 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
-                     alt="Seguridad Industrial"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
+                  alt="Seguridad Industrial"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Seguridad Industrial</span>
                 </div>
               </div>
               <div class="icontec-card-category">Curso</div>
               <div class="icontec-card-content">
-                <div class="info-tags">
-                  <span class="tag-modalidad">Presencial</span>
-                </div>
+                <div class="info-tags"><span class="tag-modalidad">Presencial</span></div>
                 <div class="icontec-card-title">Seguridad Industrial</div>
                 <p>Inicio: 05 noviembre</p>
                 <p>Duración: 5 semanas</p>
                 <p>Horario: Mar–Vie, 3–6 p.m.</p>
                 <div class="filter-course-card--buttons">
-                  <button class="btn-compact">
-                    <i class="bi bi-cart3"></i> Agregar
-                  </button>
+                  <button class="btn-compact"><i class="bi bi-cart3"></i> Agregar</button>
                 </div>
               </div>
             </div>
@@ -353,29 +358,27 @@
         </div>
         <!-- 6 -->
         <div class="col-card">
-          <a href="#" class="icontec-card-link">
+          <a href="detalle-curso.html" class="icontec-card-link">
             <div class="icontec-card">
               <div class="icontec-card-img-container">
-                <img class="icontec-card-img"
-                     src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg"
-                     alt="Gestión Ambiental"/>
+                <img
+                  class="icontec-card-img"
+                  src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg"
+                  alt="Gestión Ambiental"
+                />
                 <div class="icontec-card-overlay">
                   <span class="icontec-card-overlay-title">Gestión Ambiental</span>
                 </div>
               </div>
               <div class="icontec-card-category">Programa</div>
               <div class="icontec-card-content">
-                <div class="info-tags">
-                  <span class="tag-modalidad">Híbrida</span>
-                </div>
+                <div class="info-tags"><span class="tag-modalidad">Híbrida</span></div>
                 <div class="icontec-card-title">Gestión Ambiental</div>
                 <p>Inicio: 12 noviembre</p>
                 <p>Duración: 7 semanas</p>
-                <p>Horario: Lun–Sáb, 10 a.m.–1 p.m.</p>
+                <p>Horario: Lun–Sáb, 10–1 p.m.</p>
                 <div class="filter-course-card--buttons">
-                  <button class="btn-compact">
-                    <i class="bi bi-cart3"></i> Agregar
-                  </button>
+                  <button class="btn-compact"><i class="bi bi-cart3"></i> Agregar</button>
                 </div>
               </div>
             </div>
@@ -383,74 +386,94 @@
         </div>
       </div>
     </div>
-    <button class="carousel-btn next">
-      <i class="bi bi-chevron-right"></i>
-    </button>
+    <button class="carousel-btn next"><i class="bi bi-chevron-right"></i></button>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', ()=> {
-      const wrapper = document.querySelector('.carousel-wrapper');
-      const track   = document.querySelector('.carousel-track');
-      const prevBtn = document.querySelector('.carousel-btn.prev');
-      const nextBtn = document.querySelector('.carousel-btn.next');
-      const cards   = Array.from(track.children);
-      const visible = 4;
-      const len     = cards.length;
-
-      // Clonar últimas y primeras visibles para efecto infinito
-      cards.slice(-visible).forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
-      cards.slice(0,visible).forEach(c => track.append(c.cloneNode(true)));
-
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper    = document.querySelector('.carousel-wrapper');
+      const track      = document.querySelector('.carousel-track');
+      const prevBtn    = document.querySelector('.carousel-btn.prev');
+      const nextBtn    = document.querySelector('.carousel-btn.next');
+      const pauseBtn   = document.getElementById('carousel-pause');
+      const originals  = Array.from(track.children).slice(0,6);
+      const visible    = 4;
+      const len        = originals.length;
+      const gap        = 16;
       let idx = visible;
-      const update = () => {
-        const cardW = wrapper.clientWidth / visible;
-        track.style.transform = `translateX(-${cardW * idx}px)`;
-      };
-      update();
-      // Ajustar en resize
-      window.addEventListener('resize', ()=> {
-        track.style.transition = 'none';
-        update();
-        setTimeout(()=> track.style.transition = 'transform .5s ease',10);
-      });
+      let cardW;
+
+      // Clonar para infinito
+      originals.slice(-visible).forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+      originals.slice(0,visible).forEach(c => track.append(c.cloneNode(true)));
+
+      function setWidths() {
+        const totalW = wrapper.clientWidth;
+        let vis = visible;
+        if (totalW < 576) vis = 1;
+        else if (totalW < 768) vis = 2;
+        else if (totalW < 992) vis = 3;
+        cardW = (totalW - gap * (vis - 1)) / vis;
+        track.querySelectorAll('.col-card').forEach(c => c.style.width = `${cardW}px`);
+        update(false);
+      }
+
+      function update(animate = true) {
+        if (!animate) track.style.transition = 'none';
+        track.style.transform = `translateX(-${(cardW + gap) * idx}px)`;
+        if (!animate) {
+          setTimeout(() => track.style.transition = 'transform .5s ease', 10);
+        }
+      }
+
+      setWidths();
+      window.addEventListener('resize', setWidths);
 
       function next() {
         idx++;
         track.style.transition = 'transform .5s ease';
         update();
-        if (idx >= visible+len) {
-          track.addEventListener('transitionend', function h(){
+        if (idx >= visible + len) {
+          track.addEventListener('transitionend', function reset() {
             track.style.transition = 'none';
             idx = visible;
-            update();
-            setTimeout(()=> track.style.transition = 'transform .5s ease',10);
-            track.removeEventListener('transitionend', h);
+            update(false);
+            track.removeEventListener('transitionend', reset);
           });
         }
       }
+
       function prev() {
         idx--;
         track.style.transition = 'transform .5s ease';
         update();
         if (idx < visible) {
-          track.addEventListener('transitionend', function h(){
+          track.addEventListener('transitionend', function reset() {
             track.style.transition = 'none';
-            idx = visible+len-1;
-            update();
-            setTimeout(()=> track.style.transition = 'transform .5s ease',10);
-            track.removeEventListener('transitionend', h);
+            idx = visible + len - 1;
+            update(false);
+            track.removeEventListener('transitionend', reset);
           });
         }
       }
 
-      nextBtn.addEventListener('click', next);
       prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
 
-      // autoplay
-      let auto = setInterval(next,6000);
-      wrapper.addEventListener('mouseenter', ()=> clearInterval(auto));
-      wrapper.addEventListener('mouseleave', ()=> auto = setInterval(next,6000));
+      // Autoplay 5s con pausa/play
+      let playing = true;
+      let auto = setInterval(next, 5000);
+      function togglePlay() {
+        playing = !playing;
+        pauseBtn.innerHTML = playing
+          ? '<i class="bi bi-pause-fill"></i>'
+          : '<i class="bi bi-play-fill"></i>';
+        if (playing) auto = setInterval(next, 5000);
+        else clearInterval(auto);
+      }
+      pauseBtn.addEventListener('click', togglePlay);
+      wrapper.addEventListener('mouseenter', () => playing && clearInterval(auto));
+      wrapper.addEventListener('mouseleave', () => playing && (auto = setInterval(next,5000)));
     });
   </script>
 </body>
