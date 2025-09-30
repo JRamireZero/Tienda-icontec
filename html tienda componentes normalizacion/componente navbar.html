@@ -47,6 +47,7 @@
             box-shadow: 0 2px 20px var(--shadow);
             transition: var(--transition-smooth);
             z-index: 1000;
+            overflow: visible;
         }
 
         /* Animación de scroll - Header se vuelve más compacto y cambia color */
@@ -271,7 +272,8 @@
             transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
-            display: block;
+            display: flex;
+            align-items: center;
         }
 
         .ico-shop-nav-container a::before {
@@ -294,6 +296,71 @@
             color: var(--white);
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dropdown Navigation Styles */
+        .dropdown-nav .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: var(--transition-smooth);
+            list-style: none;
+            margin: 0;
+            padding: 0.5rem 0;
+            min-width: 250px;
+            z-index: 1500;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .dropdown-nav:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-nav .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-nav .dropdown-menu a {
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0;
+            transition: var(--transition-quick);
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            background: transparent;
+            margin: 0.25rem 0;
+        }
+
+        .dropdown-nav .dropdown-menu a::before {
+            display: none;
+        }
+
+        .dropdown-nav .dropdown-menu a:hover {
+            background: var(--primary-blue-light);
+            border-left-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+            box-shadow: none;
+        }
+
+        /* Icono de chevron para dropdowns */
+        .dropdown-nav > a .bi-chevron-down {
+            transition: var(--transition-quick);
+            font-size: 0.8rem;
+        }
+
+        .dropdown-nav:hover > a .bi-chevron-down {
+            transform: rotate(180deg);
         }
 
         /* Botones de acción fijos */
@@ -378,6 +445,8 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1200;
         }
 
         .ico-store-nav .container {
@@ -385,6 +454,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 20px;
+            overflow: visible;
         }
 
         .ico-categories-menu a {
@@ -421,6 +491,8 @@
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 900;
         }
 
         .ico-box-search-container form {
@@ -572,6 +644,36 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            /* Dropdown responsivo en móvil */
+            .dropdown-nav .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(5px);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            .dropdown-nav:hover .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown-nav .dropdown-menu a {
+                color: rgba(255, 255, 255, 0.9);
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-nav .dropdown-menu a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                color: var(--white);
+                transform: none;
+            }
         }
 
         /* Efectos de carga */
@@ -703,26 +805,7 @@
             </div>
         </div>
 
-        <!-- Buscador -->
-        <div class="ico-box-search-container">
-            <div class="container">
-                <form action="https://tienda.icontec.org/catalogsearch/result/" method="get">
-                    <div class="search-input-wrapper">
-                        <i class="bi bi-search search-icon"></i>
-                        <input type="search" name="q" placeholder="¿Qué estás buscando?" maxlength="128">
-                    </div>
-                    <button type="submit">
-                        <i class="bi bi-arrow-right me-2"></i>
-                        Buscar
-                    </button>
-                </form>
-                <a href="https://tienda.icontec.org/catalogsearch/advanced">
-                    <i class="bi bi-gear me-2"></i>
-                    Búsqueda avanzada
-                </a>
-            </div>
-        </div>
-
+     
         <!-- Navegación de categorías -->
         <div class="ico-store-nav">
             <div class="container">
@@ -730,35 +813,53 @@
 
                 <div class="ico-shop-nav-container" role="navigation">
                     <ul>
-                        <li>
-                            <a href="/sectores.html">
+                        <li class="dropdown-nav">
+                            <a href="/normas.html">
                                 <i class="bi bi-clipboard-check me-2"></i>
-                                Normas técnicas
+                                Normas
+                                <i class="bi bi-chevron-down ms-2"></i>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/sectores.html">
+                                        <i class="bi bi-clipboard-check me-2"></i>
+                                        Normas técnicas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/comparaciones.html">
+                                        <i class="bi bi-bar-chart me-2"></i>
+                                        E-compara
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="/comparaciones.html">
-                                <i class="bi bi-bar-chart me-2"></i>
-                                E-compara
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/publicaciones.html">
-                                <i class="bi bi-journal-bookmark me-2"></i>
-                                Publicaciones
-                            </a>
-                        </li>
-                        <li>
+                        <li class="dropdown-nav">
                             <a href="/educacion.html">
                                 <i class="bi bi-mortarboard me-2"></i>
-                                Cursos y Eventos
+                                Educación
+                                <i class="bi bi-chevron-down ms-2"></i>
                             </a>
-                        </li>
-                        <li>
-                            <a href="/sala-de-consulta/">
-                                <i class="bi bi-chat-dots me-2"></i>
-                                Sala de Consulta
-                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/cursos.html">
+                                        <i class="bi bi-book me-2"></i>
+                                        Cursos y Eventos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/publicaciones.html">
+                                        <i class="bi bi-journal-bookmark me-2"></i>
+                                        Publicaciones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/sala-de-consulta/">
+                                        <i class="bi bi-chat-dots me-2"></i>
+                                        Sala de Consulta
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="/outlet.html">
@@ -770,9 +871,7 @@
                 </div>
 
                 <div class="ico-user-fixed-actions">
-                    <div class="ico-search-container" title="Buscar productos">
-                        <i class="bi bi-search"></i>
-                    </div>
+                    
                     
                     <div class="minicart-wrapper" title="Mi carrito de compras">
                         <a class="showcart" href="https://tienda.icontec.org/checkout/cart">
@@ -801,6 +900,26 @@
                 </div>
             </div>
         </div>
+
+
+
+   <!-- Buscador -->
+        <div class="ico-box-search-container">
+            <div class="container">
+                <form action="https://tienda.icontec.org/catalogsearch/result/" method="get">
+                    <div class="search-input-wrapper">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="search" name="q" placeholder="¿Qué estás buscando?" maxlength="128">
+                    </div>
+                    <button type="submit">
+                        <i class="bi bi-arrow-right me-2"></i>
+                        Buscar
+                    </button>
+                </form>
+              
+            </div>
+        </div>
+
     </header>
 
 
@@ -948,6 +1067,39 @@
                 // Aquí puedes agregar la lógica para cambiar la moneda
                 console.log('Moneda cambiada a:', currencyCode);
             });
+
+            // Funcionalidad de submenús desplegables
+            $('.dropdown-nav').on('mouseenter', function() {
+                $(this).addClass('active');
+                $(this).find('.dropdown-menu').addClass('show');
+            }).on('mouseleave', function() {
+                $(this).removeClass('active');
+                $(this).find('.dropdown-menu').removeClass('show');
+            });
+
+            // Funcionalidad para móvil - click en lugar de hover
+            if (window.innerWidth <= 768) {
+                $('.dropdown-nav > a').on('click', function(e) {
+                    e.preventDefault();
+                    const $parent = $(this).parent();
+                    const $menu = $parent.find('.dropdown-menu');
+                    
+                    // Cerrar otros menús abiertos
+                    $('.dropdown-nav').not($parent).removeClass('active').find('.dropdown-menu').removeClass('show');
+                    
+                    // Toggle del menú actual
+                    $parent.toggleClass('active');
+                    $menu.toggleClass('show');
+                });
+            }
+
+            // Cerrar submenús al redimensionar la ventana
+            $(window).on('resize', function() {
+                if (window.innerWidth > 768) {
+                    $('.dropdown-nav').removeClass('active');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            });
         });
         
         // CSS adicional para las animaciones
@@ -1004,6 +1156,52 @@
                     visibility: visible !important;
                     transform: translateY(0) !important;
                 }
+
+                /* Estilos adicionales para submenús */
+                .dropdown-nav.active .dropdown-menu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                .dropdown-menu.show {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                /* Asegurar que el dropdown sea visible por encima de todo */
+                .dropdown-nav:hover .dropdown-menu {
+                    z-index: 1500 !important;
+                }
+
+                /* Animación de entrada para elementos del submenú */
+                .dropdown-menu li {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+
+                .dropdown-nav:hover .dropdown-menu li,
+                .dropdown-nav.active .dropdown-menu li,
+                .dropdown-menu.show li {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(1),
+                .dropdown-nav.active .dropdown-menu li:nth-child(1),
+                .dropdown-menu.show li:nth-child(1) { transition-delay: 0.1s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(2),
+                .dropdown-nav.active .dropdown-menu li:nth-child(2),
+                .dropdown-menu.show li:nth-child(2) { transition-delay: 0.2s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(3),
+                .dropdown-nav.active .dropdown-menu li:nth-child(3),
+                .dropdown-menu.show li:nth-child(3) { transition-delay: 0.3s; }
                 
                 @media (prefers-reduced-motion: reduce) {
                     *, *::before, *::after {
