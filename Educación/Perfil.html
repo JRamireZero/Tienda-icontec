@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* Global */
+    /* ==== Global ==== */
     body {
       font-family: 'Catamaran', sans-serif;
       background-color: #f8f9fa;
@@ -24,7 +24,7 @@
     }
     a { text-decoration: none; }
 
-    /* Layout */
+    /* ==== Layout ==== */
     .page-wrapper {
       display: flex;
       min-height: 100vh;
@@ -40,19 +40,18 @@
       .body-wrapper { margin-left: 260px; }
     }
 
-    /* Sidebar corporativo */
+    /* ==== Sidebar ==== */
     .left-sidebar {
       width: 260px;
       background: linear-gradient(180deg, #004085, #004085);
       color: #fff;
-      position: fixed;
-      top: 0; bottom: 0;
+      position: fixed; top: 0; bottom: 0;
       overflow-y: auto;
       transition: transform 0.3s ease;
     }
     @media (max-width: 991.98px) {
       .left-sidebar { transform: translateX(-100%); }
-      .left-sidebar.show { transform: translateX(0); }
+      .left-sidebar.show  { transform: translateX(0); }
     }
     .brand-logo {
       padding: 1rem;
@@ -63,10 +62,7 @@
       max-height: 40px;
       filter: brightness(0) invert(1);
     }
-
-    .sidebar-nav {
-      padding: 1rem 0;
-    }
+    .sidebar-nav { padding: 1rem 0; }
     .nav-small-cap {
       font-size: .75rem;
       text-transform: uppercase;
@@ -94,7 +90,7 @@
       color: #fff;
     }
 
-    /* Offcanvas Sidebar mobile */
+    /* ==== Offcanvas (mobile sidebar) ==== */
     .offcanvas-start {
       width: 260px;
       background: linear-gradient(180deg, #0d6efd, #004085);
@@ -106,24 +102,20 @@
     .offcanvas-title { color: #fff; }
     .btn-close-white { filter: invert(1); }
 
-    /* Header */
+    /* ==== Header ==== */
     .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 1020;
-      background: #fff;
-      border-bottom: 1px solid #dee2e6;
+      position: sticky; top: 0; z-index: 1020;
+      background: #fff; border-bottom: 1px solid #dee2e6;
     }
     .navbar {
       padding: .5rem 1rem;
     }
     .navbar-toggler {
-      border: none;
-      padding: 0;
+      border: none; padding: 0;
     }
     .navbar-toggler:focus { box-shadow: none; }
 
-    /* Card */
+    /* ==== Cards ==== */
     .card {
       border: none;
       border-radius: .75rem;
@@ -135,27 +127,44 @@
       color: #0d6efd;
     }
 
-    /* Form */
+    /* ==== Forms ==== */
+    .form-control,
     .form-select {
-      background-color: #f1f5f9;
       border-radius: .5rem;
+      background-color: #f1f5f9;
       border: 1px solid #ced4da;
-      font-size: .875rem;
+      font-size: .95rem;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #495057;
     }
 
-    /* Botón Editar */
+    /* ==== Botones ==== */
     .btn-primary {
       background-color: #0d6efd;
       border-color: #0d6efd;
+      border-radius: .5rem;
+      font-weight: 600;
     }
     .btn-primary:hover {
       background-color: #0056b3;
       border-color: #0056b3;
     }
+    .btn-outline-primary {
+      border-radius: .5rem;
+      font-weight: 600;
+    }
+    /*imagen perfil */
+.rounded-circle {
+    border-radius: 50% !important;
+    background-color: #90abf5;
+}
+
   </style>
 </head>
-
 <body>
+
   <div class="page-wrapper" id="main-wrapper">
     <!-- Sidebar desktop -->
     <aside class="left-sidebar d-none d-lg-block">
@@ -166,7 +175,7 @@
         <ul class="list-unstyled mb-0">
           <li class="nav-small-cap">Menú</li>
           <li class="sidebar-item">
-            <a href="Dashboard.html" class="sidebar-link">
+            <a href="index.html" class="sidebar-link">
               <i class="bi bi-cart4"></i> Productos
             </a>
           </li>
@@ -218,35 +227,67 @@
 
     <!-- Main Content -->
     <div class="body-wrapper">
+
       <!-- Header -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid px-0 d-flex align-items-center">
-            <!-- Toggle offcanvas en móvil -->
+            <!-- Toggle sidebar (mobile) -->
             <button class="navbar-toggler d-lg-none me-3" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarOffcanvas"
                     aria-controls="sidebarOffcanvas">
               <i class="bi bi-list fs-3 text-primary"></i>
             </button>
-            <!-- Título escritorio -->
+            <!-- Desktop title -->
             <h5 class="d-none d-lg-block mb-0">Perfil de Usuario</h5>
           </div>
         </nav>
       </header>
 
-      <!-- Contenido Perfil -->
+      <!-- Perfil Content -->
       <main class="container-fluid py-4">
-        <div class="card mx-auto" style="max-width: 400px;">
-          <div class="card-body text-center">
-            <img src="https://campus.icontecvirtual.edu.co/assets/58197466d4a60929b1b18f456492f794.png" alt="Avatar"
-                 class="rounded-circle mb-3" width="120" height="120">
-            <h4 class="card-title">Nombre Apellido</h4>
-            <p class="text-muted mb-1">usuario@dominio.com</p>
-            <p class="text-muted mb-3">Web Designer</p>
-            <button class="btn btn-primary">Editar perfil</button>
+        <div class="card mx-auto" style="max-width: 800px;">
+          <div class="card-body">
+            <h4 class="card-title mb-4 text-center">Información de Perfil</h4>
+            <div class="row g-4">
+              <!-- Foto -->
+              <div class="col-12 col-md-4 text-center">
+                <img src="https://www.icontec.org/wp-content/uploads/2025/02/colombia-productiva-1.png" alt="Avatar"
+                     class="rounded-circle img-fluid mb-3" style="max-width: 200px;">
+              </div>
+              <!-- Formulario -->
+              <div class="col-12 col-md-8">
+                <form>
+                  <div class="mb-3">
+                    <label for="fullName" class="form-label">Nombre completo</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="Nombre Apellido">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" id="email" class="form-control" placeholder="usuario@dominio.com">
+                  </div>
+                  <div class="mb-3">
+                    <label for="role" class="form-label">Rol / Cargo</label>
+                    <input type="text" id="role" class="form-control" placeholder="Web Designer">
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="+57 300 1234567">
+                  </div>
+
+                  <!-- Botones -->
+                  <div class="d-flex justify-content-end gap-2 mt-4">
+                    <button type="button" class="btn btn-outline-primary">Actualizar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </main>
+
     </div>
   </div>
 
