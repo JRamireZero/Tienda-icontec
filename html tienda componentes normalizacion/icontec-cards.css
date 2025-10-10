@@ -1,6 +1,11 @@
 /* ICONTEC Cards Unified Stylesheet */
 
 /* Section Enmiendas */
+
+body{
+    font-family: 'Catamaran', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
 .icontec-card-action-bar {
     position: relative;
     display: flex;
