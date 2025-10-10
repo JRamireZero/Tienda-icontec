@@ -1,217 +1,1531 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Carrito lateral (Bootstrap)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav bar menu</title>
+       <!-- Google Fonts - Catamaran -->
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+          <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-<!-- Bootstrap 5 CSS (CDN) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <style>    
+        :root {
+            --primary-blue: #0073aa;
+            --primary-green: #1ec773;
+            --primary-blue-light: rgba(0, 115, 170, 0.1);
+            --primary-green-light: rgba(30, 199, 115, 0.1);
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-quick: all 0.2s ease-out;
+        }
 
-<style>
-  :root {
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      
+        }
+
+        /* Header Principal */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: var(--transition-smooth);
+            z-index: 1000;
+            overflow: visible;
+        }
+
+        /* Animación de scroll - Header se vuelve más compacto y cambia color */
+        .scrolled header {
+            background: linear-gradient(135deg, rgba(0, 115, 170, 0.95) 0%, rgba(30, 199, 115, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Círculo decorativo */
+        .ico-circle-header-container {
+            position: absolute;
+            top: -50px;
+            right: 20%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .ico-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--white) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            overflow: visible;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        /* Logo */
+        .ico-logo-container a {
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .ico-logo-container a:hover {
+            transform: scale(1.05);
+        }
+
+        .ico-logo-container img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition-smooth);
+            filter: brightness(0) invert(1);
+        }
+
+        .scrolled .ico-logo-container img {
+            height: 40px;
+        }
+
+        /* Navegación superior */
+        .ico-top-navigation {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 0.75rem 0;
+            border-radius: 0 0 20px 20px;
+            overflow: visible;
+            position: relative;
+            z-index: 9996;
+        }
+
+        .top-nav-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            overflow: visible;
+        }
+
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .welcome-section .ico-logo-container img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: var(--transition-smooth);
+        }
+
+        .welcome-section strong {
+            color: var(--white);
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .search-section {
+            flex: 1;
+            max-width: 400px;
+            min-width: 250px;
+        }
+
+        .compact-search {
+            display: flex;
+            width: 100%;
+        }
+
+        .compact-search .search-input-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+        }
+
+        .compact-search input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px 0 0 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            border-right: none;
+        }
+
+        .compact-search input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(30, 199, 115, 0.1);
+        }
+
+        .search-icon-btn {
+            padding: 0.6rem 1rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+        }
+
+        .search-icon-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon-btn i {
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 9997;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Selector de moneda */
+        .currency-selector {
+            margin-left: auto;
+        }
+
+        .switcher-currency {
+            position: relative;
+        }
+
+        .switcher-currency .switcher-trigger {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-width: 80px;
+            justify-content: space-between;
+        }
+
+        .switcher-currency .switcher-trigger:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .switcher-currency .switcher-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition-smooth);
+            list-style: none;
+            margin: 0;
+            padding: 0.3rem 0;
+            min-width: 120px;
+            z-index: 9999;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .switcher-currency:hover .switcher-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 9999;
+        }
+
+        /* Asegurar que el contenedor padre permita el overflow */
+        .switcher-currency {
+            position: relative;
+            z-index: 9998;
+        }
+
+        .switcher-currency .switcher-dropdown li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 0.5rem 0.8rem;
+            display: flex;
+            align-items: center;
+            transition: var(--transition-quick);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .switcher-currency .switcher-dropdown li a:hover {
+            background: var(--primary-blue-light);
+            color: var(--primary-blue);
+        }
+
+        /* Menú principal de navegación */
+        .ico-shop-nav-container ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .ico-shop-nav-container li {
+            position: relative;
+        }
+
+        .ico-shop-nav-container a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .ico-shop-nav-container a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .ico-shop-nav-container a:hover::before {
+            width: 100%;
+        }
+
+        .ico-shop-nav-container a:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dropdown Navigation Styles */
+        .dropdown-nav .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: var(--transition-smooth);
+            list-style: none;
+            margin: 0;
+            padding: 0.5rem 0;
+            min-width: 250px;
+            z-index: 1500;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .dropdown-nav:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-nav .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-nav .dropdown-menu a {
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0;
+            transition: var(--transition-quick);
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            background: transparent;
+            margin: 0.25rem 0;
+        }
+
+        .dropdown-nav .dropdown-menu a::before {
+            display: none;
+        }
+
+        .dropdown-nav .dropdown-menu a:hover {
+            background: var(--primary-blue-light);
+            border-left-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+            box-shadow: none;
+        }
+
+        /* Icono de chevron para dropdowns */
+        .dropdown-nav > a .bi-chevron-down {
+            transition: var(--transition-quick);
+            font-size: 0.8rem;
+        }
+
+        .dropdown-nav:hover > a .bi-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* Botones de acción fijos */
+        .ico-user-fixed-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ico-search-container,
+        .ico-account-container,
+        .minicart-wrapper {
+            position: relative;
+        }
+
+        .ico-search-container i,
+        .ico-account-container i,
+        .showcart {
+            color: var(--white);
+            font-size: 1.2rem;
+            padding: 0.75rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .ico-search-container:hover i,
+        .ico-account-container:hover i,
+        .showcart:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dropdown de cuenta */
+        .ico-account-container ul {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: var(--transition-smooth);
+            list-style: none;
+            margin: 0;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            z-index: 1000;
+        }
+
+        .ico-account-container:hover ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .ico-account-container ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            display: block;
+            transition: var(--transition-quick);
+            border-left: 3px solid transparent;
+        }
+
+        .ico-account-container ul li a:hover {
+            background: var(--primary-blue-light);
+            border-left-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        /* Navegación de tienda */
+        .ico-store-nav {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1200;
+        }
+
+        .ico-store-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 20px;
+            overflow: visible;
+        }
+
+        .ico-categories-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+
+        .ico-categories-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ico-categories-menu i {
+            font-size: 1.1rem;
+            transition: var(--transition-quick);
+        }
+
+        .ico-categories-menu a:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* Carrito de compras */
+        .counter {
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .counter.empty {
+            display: none;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .top-nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .welcome-section {
+                justify-content: center;
+                order: 1;
+            }
+
+            .welcome-section strong {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+            .welcome-section .ico-logo-container img {
+                height: 35px;
+            }
+
+            .search-section {
+                order: 2;
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .nav-links {
+                order: 3;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .switcher-currency .switcher-trigger {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .compact-search input {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .search-icon-btn {
+                padding: 0.5rem 0.8rem;
+                min-width: 45px;
+            }
+
+            .ico-shop-nav-container ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .ico-store-nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .ico-user-fixed-actions {
+                margin-top: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            /* Dropdown responsivo en móvil */
+            .dropdown-nav .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(5px);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            .dropdown-nav:hover .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown-nav .dropdown-menu a {
+                color: rgba(255, 255, 255, 0.9);
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-nav .dropdown-menu a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                color: var(--white);
+                transform: none;
+            }
+        }
+
+        /* Efectos de carga */
+        .nav-container {
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Micro-interacciones */
+        .ico-shop-nav-container a,
+        .ico-top-navigation a,
+        .ico-categories-menu a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ico-shop-nav-container a::after,
+        .ico-top-navigation a::after,
+        .ico-categories-menu a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .ico-shop-nav-container a:active::after,
+        .ico-top-navigation a:active::after,
+        .ico-categories-menu a:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Estados de focus para accesibilidad */
+        a:focus,
+        button:focus,
+        input:focus {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        /* Optimización de rendimiento */
+        * {
+            will-change: auto;
+        }
+
+        .ico-shop-nav-container a:hover,
+        .ico-search-container:hover i,
+        .ico-account-container:hover i {
+            will-change: transform;
+        }
+/**** panel lateral carrito****/
+ :root{
     --accent: #0073aa;
+    --accent-2: #005f8a;
     --panel-bg: #ffffff;
     --panel-radius: 12px;
     --muted: #6c757d;
   }
 
-  /* Botón flotante */
-  .cart-fab {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 1080;
-    border-radius: 50px;
-    padding: .6rem .9rem;
-    background: var(--accent);
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(3,27,44,0.12);
-    border: 0;
+  body{font-family:'Catamaran',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f6f7f8;margin:0;color:#111}
+
+ 
+
+  /* Offcanvas ancho reducido */
+  .offcanvas-end { width: min(360px, 92%); max-width:92%; border-top-left-radius: var(--panel-radius); border-bottom-left-radius: var(--panel-radius); }
+  .offcanvas-header { padding:.6rem 1rem; 
+    background: linear-gradient(45deg, #0073A9, #1ec773);
+    
+    color:#fff; border-top-left-radius: var(--panel-radius); align-items:center; }
+  .offcanvas-header h5{margin:0;font-weight:700;font-size:1rem}
+  .offcanvas-header .btn-close{filter:brightness(1.8);opacity:.95}
+
+  .offcanvas-body{padding:.75rem 1rem;background:var(--panel-bg);display:flex;flex-direction:column;height:100%}
+
+  /* Lista de productos */
+  .cart-list{display:flex;flex-direction:column;gap:.5rem;overflow:auto;padding-right:4px}
+  .cart-item{display:grid;grid-template-columns:64px 1fr auto;gap:.5rem;align-items:start;padding:.5rem;border-radius:10px;background:#f7f8f9}
+  .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+  .cart-item .title{font-weight:600;color:#111;font-size:.95rem;margin-bottom:2px}
+  .cart-item .meta{font-size:.82rem;color:var(--muted);margin-bottom:6px}
+  .cart-item .price{color:var(--accent);font-weight:700;font-size:.95rem}
+
+  /* Grupo cantidad y eliminar */
+  .qty-group{display:flex;align-items:center;gap:.35rem;background:#fff;border-radius:8px;padding:.12rem;border:1px solid rgba(0,0,0,.06)}
+  .qty-group button{border:0;background:transparent;padding:.18rem .4rem;color:var(--accent);font-weight:700;border-radius:6px;cursor:pointer}
+  .qty-group span{min-width:22px;text-align:center;display:inline-block;font-weight:600}
+  .btn-trash{border:0;background:transparent;color:var(--muted);font-size:1.05rem;padding:.25rem;margin-left:.25rem;cursor:pointer}
+  .btn-trash:hover{color:#dc3545}
+
+  /* Resumen pie */
+  .cart-footer{border-top:1px solid rgba(0,0,0,.06);padding-top:.75rem;margin-top:.6rem}
+  .cart-footer .total-row{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:1rem}
+
+  /* Botones compactos, centrados y con doble color */
+  .cart-actions{display:flex;
+    gap:.5rem;
+    justify-content:center;
+    margin-top:.55rem
   }
-
-  .cart-fab .badge {
-    background: #fff;
-    color: var(--accent);
-    font-weight: 700;
-    border-radius: 999px;
-    padding: .15rem .45rem;
-    margin-left: .5rem;
-  }
-
-  /* Offcanvas custom */
-  .offcanvas-end {
-    width: min(420px, 100%);
-    border-top-left-radius: var(--panel-radius);
-    border-bottom-left-radius: var(--panel-radius);
-  }
-
-  .offcanvas-body {
-    background: var(--panel-bg);
-    padding: 1rem;
-  }
-
-  .cart-item {
-    display: grid;
-    grid-template-columns: 72px 1fr auto;
-    gap: .6rem;
-    align-items: start;
-    padding: .65rem;
-    border-radius: 10px;
-    background: #f7f8f9;
-    margin-bottom: .6rem;
-  }
-
-  .cart-item img {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .cart-item .title { font-weight: 600; color: #111; font-size: .95rem; margin-bottom: 2px; }
-  .cart-item .meta { font-size: .86rem; color: var(--muted); margin-bottom: 6px; }
-  .cart-item .price { color: var(--accent); font-weight: 700; }
-
-  .qty-group {
-    display:flex;
-    align-items:center;
-    gap:.35rem;
-    background:#fff;
+  .cart-actions .btn{
+    flex:0 0 auto;
+    padding:.38rem .6rem;
+    font-size:.88rem;
     border-radius:8px;
-    padding:.15rem;
-    border:1px solid rgba(0,0,0,.06);
+    font-weight:700;
+    text-align:center;
+    min-width:120px}
+  .btn-checkout{
+    background:linear-gradient(45deg, #0073A9, #1ec773);
+    color:#fff;border:0
   }
-  .qty-group button{
-    border:0;background:transparent;padding:.25rem .45rem;color:var(--accent);font-weight:700;border-radius:6px;
+  .btn-continue{
+    
+  display:inline-block;
+  padding:0.38rem 0.6rem;
+  min-width:120px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:0.88rem;
+  text-align:center;
+  color:var(--accent, #0073aa);
+  background:linear-gradient(90deg,#f1f3f5,#ffffff);
+  border:1px solid rgba(0,0,0,0.06);
+  cursor:pointer;
+  transition:background .18s ease, color .18s ease, transform .06s ease;
   }
-  .qty-group span{min-width:24px;text-align:center;display:inline-block}
 
-  /* Resumen fijo abajo */
-  .cart-footer {
-    border-top: 1px solid rgba(0,0,0,.06);
-    padding-top: .85rem;
-    margin-top: .6rem;
-  }
+/* Hover: fondo doble color (gradiente) boton seguir comprando*/
+.btn-continue:hover,
+.btn-continue:focus{
+  background:linear-gradient(45deg, #0073A9, #1ec773);
+  color:#ffffff;
+  transform:translateY(-1px);
+  outline: none;
+}
 
-  /* Responsive: pantallas pequeñas ocupan toda la anchura */
-  @media (max-width: 540px) {
-    .offcanvas-end {
-      width: 100% !important;
-      border-radius: 0;
-    }
-  }
-</style>
-</head>
-<body>
+/* Versión más pequeña */
+.btn-continue.btn-sm{
+  padding:0.28rem 0.5rem;
+  min-width:100px;
+  font-size:0.82rem;
+}
 
-<!-- Botón que abre el panel (Offcanvas) -->
-<button class="cart-fab d-flex align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart" aria-expanded="false" aria-label="Abrir carrito">
-  <!-- Icono simple -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" style="color: #fff">
-    <path d="M3 3h2l.9 4.5L7.5 11h9l1.6-3.5H9.1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
-    <circle cx="18" cy="20" r="1.6" fill="currentColor"/>
-  </svg>
-  <span class="ms-2">Carrito</span>
-  <span class="badge">3</span>
-</button>
+/* Centrado en contenedor */
+.btn-continue.center{
+  display:block;
+  margin:0 auto;
+}
+  
+  /* Ajustes móviles */
+  @media (max-width:540px){ 
+  .offcanvas-end{
+    width:100% !important;
+    border-radius:0;
+  } 
+   .cart-actions .btn{
+    min-width:110px;
+  }
+   }
+  .cart-list::-webkit-scrollbar{
+    width:8px;
+  } 
+  .cart-list::-webkit-scrollbar-thumb{
+    background:rgba(0,0,0,.06);
+    border-radius:8px;
+  }
+    </style>
+
+    
+    <header>
+        <!-- Elemento decorativo -->
+        <div class="ico-circle-header-container">
+            <div class="ico-circle"></div>
+        </div>
+        <!-- Navegación superior -->
+        <div class="ico-top-navigation">
+            <div class="container">
+                <div class="top-nav-flex">
+                    <!-- Logo y mensaje de bienvenida -->
+                    <div class="welcome-section">
+                        <div class="ico-logo-container">
+                            <a href="https://tienda.icontec.org/" aria-label="store logo">
+                                <img src="https://tienda.icontec.org/pub/media/Hipertexto/main/logotipo.svg" alt="Logo Icontec">
+                            </a>
+                        </div>
+                        <strong>Bienvenid@ a nuestra Tienda virtual</strong>
+                    </div>
+
+                    <!-- Buscador compacto -->
+                    <div class="search-section">
+                        <form action="https://tienda.icontec.org/catalogsearch/result/" method="get" class="compact-search">
+                            <div class="search-input-wrapper">
+                                <input type="search" name="q" placeholder="¿Qué estás buscando?" maxlength="128">
+                                <button type="submit" class="search-icon-btn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Enlaces y selector de moneda -->
+                    <div class="nav-links">
+                        <a href="https://www.icontec.org/" target="_blank" rel="noopener">
+                            <i class="bi bi-globe me-2"></i>
+                            Portal Icontec
+                        </a>
+                        <div class="switcher currency switcher-currency">
+                            <div class="switcher-trigger" data-toggle="dropdown" role="button" tabindex="0" title="Cambiar moneda">
+                                <i class="bi bi-cash me-1"></i>
+                                <span>COP</span>
+                                <i class="bi bi-chevron-down ms-1"></i>
+                            </div>
+                            <ul class="switcher-dropdown" data-target="dropdown">
+                                <li>
+                                    <a href="#" title="Cambiar a dólar estadounidense">
+                                        <i class="bi bi-currency-dollar me-2"></i>
+                                        USD
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navegación de categorías -->
+        <div class="ico-store-nav">
+            <div class="container">
+               
+
+                <div class="ico-shop-nav-container" role="navigation">
+                    <ul>
+                        <li class="dropdown-nav">
+                            <a href="/normas.html">
+                                <i class="bi bi-clipboard-check me-2"></i>
+                                Normas
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/sectores.html">
+                                        <i class="bi bi-clipboard-check me-2"></i>
+                                        Normas técnicas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/comparaciones.html">
+                                        <i class="bi bi-bar-chart me-2"></i>
+                                        E-compara
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-nav">
+                            <a href="/educacion.html">
+                                <i class="bi bi-mortarboard me-2"></i>
+                                Educación
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/cursos.html">
+                                        <i class="bi bi-book me-2"></i>
+                                        Cursos y Eventos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/publicaciones.html">
+                                        <i class="bi bi-journal-bookmark me-2"></i>
+                                        Publicaciones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/sala-de-consulta/">
+                                        <i class="bi bi-chat-dots me-2"></i>
+                                        Sala de Consulta
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/outlet.html">
+                                <i class="bi bi-lightning me-2"></i>
+                                <span class="sr-only">Nuevo: </span>Outlet
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ico-user-fixed-actions">
+                    
+                    <!--boton agregar al carrito-->
+                    <div class="minicart-wrapper" title="Mi carrito de compras" id="showcartBtn">
+                        <a class="showcart" href="https://tienda.icontec.org/checkout/cart"  >
+                            <i class="bi bi-cart2"></i>
+                            <span class="counter qty">
+                                <span class="counter-number"    id="cartCounter">3</span>
+                            </span>
+                        </a>
+                    </div>
+                                   
+                    <div class="ico-account-container" title="Mi cuenta">
+                        <i class="bi bi-person-circle"></i>
+                        <ul>
+                            <li>
+                                <a href="https://tienda.icontec.org/customer/account/">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://tienda.icontec.org/customer/account/">
+                                    Registrarse
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
 
 <!-- Offcanvas panel (derecha) -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasCartLabel" class="m-0" style="color:var(--accent)">Tu carrito</h5>
+    <h5 id="offcanvasCartLabel">Tu carrito</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
   </div>
 
   <div class="offcanvas-body d-flex flex-column">
-    <!-- Lista de productos -->
-    <div class="cart-list mb-2">
-      <!-- Item 1 -->
-      <div class="cart-item">
-        <img src="https://via.placeholder.com/160x160.png?text=Curso+1" alt="Curso 1">
+    <!-- Lista productos -->
+    <div class="cart-list" id="cartList" role="list">
+      <div class="cart-item" data-id="1">
+        <img src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg" alt="Curso 1">
         <div>
           <div class="title">Gestión de Calidad</div>
           <div class="meta">Virtual · 8 horas</div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="price">$120.000</div>
-          </div>
+          <div class="price" data-price="120000">$120.000</div>
         </div>
         <div class="text-end">
-          <div class="qty-group">
-            <button type="button" aria-hidden="true">−</button>
-            <span>1</span>
-            <button type="button" aria-hidden="true">+</button>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.35rem">
+            <div class="qty-group" data-id="1">
+              <button class="qty-dec" aria-label="disminuir">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-inc" aria-label="aumentar">+</button>
+            </div>
+            <button class="btn-trash" title="Eliminar" aria-label="Eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Item 2 -->
-      <div class="cart-item">
-        <img src="https://via.placeholder.com/160x160.png?text=Auditor%C3%ADa" alt="Auditoría">
+      <div class="cart-item" data-id="2">
+        <img src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg" alt="Auditoría">
         <div>
           <div class="title">Taller: Auditoría Interna</div>
           <div class="meta">Presencial · 16 horas</div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="price">$230.000</div>
-          </div>
+          <div class="price" data-price="230000">$230.000</div>
         </div>
         <div class="text-end">
-          <div class="qty-group">
-            <button type="button" aria-hidden="true">−</button>
-            <span>2</span>
-            <button type="button" aria-hidden="true">+</button>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.35rem">
+            <div class="qty-group" data-id="2">
+              <button class="qty-dec" aria-label="disminuir">−</button>
+              <span class="qty-value">2</span>
+              <button class="qty-inc" aria-label="aumentar">+</button>
+            </div>
+            <button class="btn-trash" title="Eliminar" aria-label="Eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Item 3 -->
-      <div class="cart-item">
-        <img src="https://via.placeholder.com/160x160.png?text=Gu%C3%ADa" alt="Guía">
+      <div class="cart-item" data-id="3">
+        <img src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg" alt="Guía">
         <div>
           <div class="title">Guía descargable</div>
           <div class="meta">PDF · Recursos</div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="price">$35.000</div>
-          </div>
+          <div class="price" data-price="35000">$35.000</div>
         </div>
         <div class="text-end">
-          <div class="qty-group">
-            <button type="button" aria-hidden="true">−</button>
-            <span>1</span>
-            <button type="button" aria-hidden="true">+</button>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.35rem">
+            <div class="qty-group" data-id="3">
+              <button class="qty-dec" aria-label="disminuir">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-inc" aria-label="aumentar">+</button>
+            </div>
+            <button class="btn-trash" title="Eliminar" aria-label="Eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Resumen y acciones (pegado abajo) -->
-    <div class="mt-auto cart-footer">
-      <div class="d-flex justify-content-between mb-1 small text-muted">
-        <div>Subtotal</div>
-        <div>$585.000</div>
-      </div>
-      <div class="d-flex justify-content-between mb-3 small text-muted">
-        <div>Impuestos</div>
-        <div>$0</div>
-      </div>
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="fw-bold">Total</div>
-        <div class="fw-bold">$585.000</div>
-      </div>
+    <!-- Resumen y acciones -->
+    <div class="cart-footer mt-auto">
+      <div class="d-flex justify-content-between small text-muted mb-1"><div>Subtotal</div><div id="subtotalText">$585.000</div></div>
+      <div class="d-flex justify-content-between small text-muted mb-2"><div>Impuestos</div><div id="taxText">$0</div></div>
+      <div class="total-row mb-2"><div>Total</div><div id="totalText">$585.000</div></div>
 
-      <div class="d-grid gap-2">
-        <button class="btn btn-primary btn-lg" type="button">Ir a pagar</button>
-        <div class="d-flex gap-2">
-          <button class="btn btn-outline-secondary flex-fill" type="button" data-bs-dismiss="offcanvas">Seguir comprando</button>
-          <button class="btn btn-light flex-fill" type="button">Limpiar</button>
-        </div>
+      <div class="cart-actions">
+        <button id="checkoutBtn" class="btn btn-checkout">Ir a pagar</button>
+        <button id="continueBtn" class="btn btn-continue" data-bs-dismiss="offcanvas">Seguir comprando</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Bootstrap 5 JS + Popper (CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+
+/* Comportamiento vinculado a tu botón .showcart
+   - Si el usuario hace clic en el enlace .showcart se previene el comportamiento por defecto
+     y se abre el offcanvas #offcanvasCart usando la API de Bootstrap.
+   - Si se desea mantener la navegación al checkout en algún caso, elimina el preventDefault.
+*/
+
+document.addEventListener('DOMContentLoaded', function () {
+  const showcartBtn = document.getElementById('showcartBtn');
+  const offcanvasEl = document.getElementById('offcanvasCart');
+  const bsOffcanvas = new bootstrap.Offcanvas(offcanvasEl);
+
+  // Abrir offcanvas al hacer clic en tu botón
+  showcartBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // evita ir al href; elimina si quieres mantener enlace
+    bsOffcanvas.show();
+  });
+
+  const cartList = document.getElementById('cartList');
+  const subtotalText = document.getElementById('subtotalText');
+  const totalText = document.getElementById('totalText');
+  const cartCounter = document.getElementById('cartCounter');
+
+  function formatMoney(n){
+    return new Intl.NumberFormat('es-CO').format(n);
+  }
+
+  function recalcTotals(){
+    let subtotal = 0;
+    cartList.querySelectorAll('.cart-item').forEach(item=>{
+      const priceEl = item.querySelector('.price');
+      const price = Number(priceEl.getAttribute('data-price')) || 0;
+      const qty = Number(item.querySelector('.qty-value').textContent) || 0;
+      subtotal += price * qty;
+    });
+    const tax = 0;
+    const total = subtotal + tax;
+    subtotalText.textContent = '$' + formatMoney(subtotal);
+    totalText.textContent = '$' + formatMoney(total);
+  }
+
+  // Incrementar / disminuir cantidades y eliminar
+  cartList.addEventListener('click', function(e){
+    const dec = e.target.closest('.qty-dec');
+    const inc = e.target.closest('.qty-inc');
+    const trash = e.target.closest('.btn-trash') || e.target.closest('.bi-trash');
+
+    if (dec || inc){
+      const group = (dec||inc).closest('.qty-group');
+      const item = (dec||inc).closest('.cart-item');
+      const qtySpan = item.querySelector('.qty-value');
+      let qty = Number(qtySpan.textContent) || 0;
+      if (dec){
+        qty = Math.max(0, qty - 1);
+      } else {
+        qty = qty + 1;
+      }
+      qtySpan.textContent = qty;
+      recalcTotals();
+      updateBadge();
+      return;
+    }
+
+    if (trash){
+      // si el click vino en el SVG .bi-trash, subimos al botón contenedor
+      const btn = e.target.closest('.btn-trash') || e.target;
+      const item = btn.closest('.cart-item');
+      if (item){
+        item.remove();
+        recalcTotals();
+        updateBadge();
+      }
+      return;
+    }
+  });
+
+  function updateBadge(){
+    const count = document.querySelectorAll('.cart-item').length;
+    cartCounter.textContent = count;
+  }
+
+  // Inicialización
+  recalcTotals();
+  updateBadge();
+
+  // Acciones botones
+  document.getElementById('checkoutBtn').addEventListener('click', function(){
+    // Implementa la redirección o lógica de checkout real aquí
+    alert('Ir a pagar (reemplaza con tu flujo de pago)');
+  });
+
+  // Si la plantilla actual actualiza el carrito por AJAX, expón una función global para refrescar vista
+  window.refreshMiniCartView = function(items){
+    // items: array de {id,title,meta,price,qty,img}
+    // función ejemplo que reemplaza el listado actual por items pasados
+    if (!Array.isArray(items)) return;
+    cartList.innerHTML = '';
+    items.forEach(it=>{
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.setAttribute('data-id', it.id);
+      div.innerHTML = `
+        <img src="${it.img || 'https://via.placeholder.com/160x160.png?text=Item'}" alt="${it.title}">
+        <div>
+          <div class="title">${it.title}</div>
+          <div class="meta">${it.meta || ''}</div>
+          <div class="price" data-price="${it.price || 0}">$${formatMoney(it.price || 0)}</div>
+        </div>
+        <div class="text-end">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.35rem">
+            <div class="qty-group" data-id="${it.id}">
+              <button class="qty-dec" aria-label="disminuir">−</button>
+              <span class="qty-value">${it.qty || 1}</span>
+              <button class="qty-inc" aria-label="aumentar">+</button>
+            </div>
+            <button class="btn-trash" title="Eliminar" aria-label="Eliminar"><i class="bi bi-trash"></i></button>
+          </div>
+        </div>`;
+      cartList.appendChild(div);
+    });
+    recalcTotals();
+    updateBadge();
+  };
+});
+
+
+        // Funcionalidad del navbar optimizada
+        $(document).ready(function() {
+            let lastScrollTop = 0;
+            let scrollTimer = null;
+            
+            // Animación de scroll para el navbar
+            $(window).scroll(function() {
+                const scrollTop = $(this).scrollTop();
+                
+                if (scrollTop > 50) {
+                    $('body').addClass('scrolled');
+                } else {
+                    $('body').removeClass('scrolled');
+                }
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    $('.ico-top-navigation').addClass('scroll-hidden');
+                } else {
+                    $('.ico-top-navigation').removeClass('scroll-hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+                $('body').addClass('scrolling');
+                
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function() {
+                    $('body').removeClass('scrolling');
+                }, 150);
+            });
+            
+            // Animaciones de entrada para elementos del menú
+            $('.ico-shop-nav-container li').each(function(index) {
+                $(this).css({
+                    'animation-delay': (index * 0.1) + 's',
+                    'animation': 'slideInUp 0.6s ease-out forwards'
+                });
+            });
+            
+            // Efecto ripple en clicks
+            $('.ico-shop-nav-container a, .ico-top-navigation a, .ico-categories-menu a').on('click', function(e) {
+                const ripple = $('<span class="ripple"></span>');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.css({
+                    width: size + 'px',
+                    height: size + 'px',
+                    left: x + 'px',
+                    top: y + 'px'
+                });
+                
+                $(this).append(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+            
+            // Funcionalidad del buscador
+            const searchInput = $('input[name="q"]');
+            const searchButton = $('button[type="submit"]');
+            
+            searchInput.on('input', function() {
+                const value = $(this).val();
+                if (value.length > 0) {
+                    searchButton.prop('disabled', false);
+                } else {
+                    searchButton.prop('disabled', true);
+                }
+                
+                // Analytics tracking para búsquedas específicas
+                if (value.toLowerCase().includes('libre competencia')) {
+                    searchButton.attr('data-ga', 'Libre competencia');
+                } else if (value.toLowerCase().includes('ntc 6378')) {
+                    searchButton.attr('data-ga', 'NTC 6378');
+                } else {
+                    searchButton.removeAttr('data-ga');
+                }
+            });
+            
+            // Smooth scroll para enlaces internos
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                const target = $(this.getAttribute('href'));
+                if (target.length) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 100
+                    }, 800);
+                }
+            });
+            
+            // Observer para animaciones lazy
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            document.querySelectorAll('.ico-shop-nav-container li').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Funcionalidad del selector de moneda
+            $('.switcher-currency .switcher-trigger').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().toggleClass('active');
+            });
+
+            // Cerrar dropdown al hacer click fuera
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.switcher-currency').length) {
+                    $('.switcher-currency').removeClass('active');
+                }
+            });
+
+            // Cambio de moneda
+            $('.switcher-dropdown a').on('click', function(e) {
+                e.preventDefault();
+                const currency = $(this).find('span, i').last().text().trim();
+                const currencyCode = currency.split(' ')[0];
+                $('.switcher-trigger span').text(currencyCode);
+                $('.switcher-currency').removeClass('active');
+                
+                // Aquí puedes agregar la lógica para cambiar la moneda
+                console.log('Moneda cambiada a:', currencyCode);
+            });
+
+            // Funcionalidad de submenús desplegables
+            $('.dropdown-nav').on('mouseenter', function() {
+                $(this).addClass('active');
+                $(this).find('.dropdown-menu').addClass('show');
+            }).on('mouseleave', function() {
+                $(this).removeClass('active');
+                $(this).find('.dropdown-menu').removeClass('show');
+            });
+
+            // Funcionalidad para móvil - click en lugar de hover
+            if (window.innerWidth <= 768) {
+                $('.dropdown-nav > a').on('click', function(e) {
+                    e.preventDefault();
+                    const $parent = $(this).parent();
+                    const $menu = $parent.find('.dropdown-menu');
+                    
+                    // Cerrar otros menús abiertos
+                    $('.dropdown-nav').not($parent).removeClass('active').find('.dropdown-menu').removeClass('show');
+                    
+                    // Toggle del menú actual
+                    $parent.toggleClass('active');
+                    $menu.toggleClass('show');
+                });
+            }
+
+            // Cerrar submenús al redimensionar la ventana
+            $(window).on('resize', function() {
+                if (window.innerWidth > 768) {
+                    $('.dropdown-nav').removeClass('active');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            });
+        });
+        
+        // CSS adicional para las animaciones
+        const additionalCSS = `
+            <style>
+                @keyframes slideInUp {
+                    from { opacity: 0; transform: translateY(30px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                .scroll-hidden {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+                
+                .scrolling header {
+                    transform: translateY(-2px);
+                }
+                
+                .ripple {
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    pointer-events: none;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s linear;
+                }
+                
+                @keyframes ripple-animation {
+                    to { transform: scale(4); opacity: 0; }
+                }
+                
+                .animate-in {
+                    animation: fadeInScale 0.6s ease-out forwards;
+                }
+                
+                @keyframes fadeInScale {
+                    from { opacity: 0; transform: scale(0.8); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+
+                /* Estados activos del selector de moneda */
+                .switcher-currency.active .switcher-trigger {
+                    background: rgba(255, 255, 255, 0.2);
+                    border-color: rgba(255, 255, 255, 0.5);
+                }
+
+                .switcher-currency.active .switcher-trigger i.bi-chevron-down {
+                    transform: rotate(180deg);
+                }
+
+                .switcher-currency.active .switcher-dropdown {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 9999 !important;
+                }
+
+                /* Estilos adicionales para submenús */
+                .dropdown-nav.active .dropdown-menu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                .dropdown-menu.show {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                /* Asegurar que el dropdown sea visible por encima de todo */
+                .dropdown-nav:hover .dropdown-menu {
+                    z-index: 1500 !important;
+                }
+
+                /* Animación de entrada para elementos del submenú */
+                .dropdown-menu li {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+
+                .dropdown-nav:hover .dropdown-menu li,
+                .dropdown-nav.active .dropdown-menu li,
+                .dropdown-menu.show li {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(1),
+                .dropdown-nav.active .dropdown-menu li:nth-child(1),
+                .dropdown-menu.show li:nth-child(1) { transition-delay: 0.1s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(2),
+                .dropdown-nav.active .dropdown-menu li:nth-child(2),
+                .dropdown-menu.show li:nth-child(2) { transition-delay: 0.2s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(3),
+                .dropdown-nav.active .dropdown-menu li:nth-child(3),
+                .dropdown-menu.show li:nth-child(3) { transition-delay: 0.3s; }
+                
+                @media (prefers-reduced-motion: reduce) {
+                    *, *::before, *::after {
+                        animation-duration: 0.01ms !important;
+                        animation-iteration-count: 1 !important;
+                        transition-duration: 0.01ms !important;
+                    }
+                }
+            </style>
+        `;
+        
+        document.head.insertAdjacentHTML('beforeend', additionalCSS);
+    </script>
 </body>
 </html>
