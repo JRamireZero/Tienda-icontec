@@ -12,42 +12,37 @@
   />
 
   <style>
-    /* Ajustes del carrusel responsivo */
-.carrusel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
+    .carrusel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
 
-.carrusel .carousel-item {
-  height: 50vh; /* antes 60vh o 100vh */
-  min-height: 280px;
-  background-size: cover;
-  background-position: center center;
-}
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
 
-/* Altura más baja en móviles */
-@media (max-width: 768px) {
-  .carrusel .carousel-item {
-    height: 35vh;
-  }
-}
+    @media (max-width: 767.98px) {
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: none;
+      }
+    }
 
-/* Indicadores en la parte inferior */
-.carousel-indicators {
-  bottom: 1rem;
-}
+    .carousel-indicators {
+      bottom: 1rem;
+    }
 
-/* Permitir scroll vertical si arrastran en el carrusel */
-.carousel.pointer-event {
-  touch-action: pan-y;
-}
+    .carousel.pointer-event {
+      touch-action: pan-y;
+    }
   </style>
 </head>
 
 <body class="d-flex flex-column align-items-center">
 
-  <!-- Título encima del carrusel -->
   <h3 class="mt-4 mb-3 text-center">Carrusel - Index</h3>
 
   <div class="carrusel w-100">
@@ -59,87 +54,53 @@
     >
       <!-- Indicadores -->
       <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="3"
-          aria-label="Slide 4"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="4"
-          aria-label="Slide 5"
-        ></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
       </div>
 
-      <!-- Slides -->
+      <!-- Slides con imágenes para escritorio y móvil -->
       <div class="carousel-inner">
-        <div
-          class="carousel-item active"
-          style="background-image:url('https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-desktop-descuento-primera-compra.png')"
-        ></div>
-        <div
-          class="carousel-item"
-          style="background-image:url('https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-blockchain-2023-tv_1.jpg')"
-        ></div>
-        <div
-          class="carousel-item"
-          style="background-image:url('https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-campus-feb-2025-tienda_13_desktop.jpg')"
-        ></div>
-        <div
-          class="carousel-item"
-          style="background-image:url('https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-blockchain-2023-tv_1.jpg')"
-        ></div>
-        <div
-          class="carousel-item"
-          style="background-image:url('https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-campus-feb-2025-tienda_13_desktop.jpg')"
-        ></div>
+        <div class="carousel-item active">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-desktop-descuento-primera-compra.png" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/banner-mobile-descuento-primera-compra.png" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-sala-de-consulta_desktop.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/banner-sala-de-consulta_mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-blockchain-2023-tv_1.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/blockchain-2023-mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-campus-feb-2025-tienda_13_desktop.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/BANNER-Campus-Feb-2025-Tienda-S_13_mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>       
       </div>
 
       <!-- Controles Prev/Next -->
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#bannerCarousel"
-        data-bs-slide="prev"
-      >
+      <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
       </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#bannerCarousel"
-        data-bs-slide="next"
-      >
+      <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
       </button>
     </div>
   </div>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
