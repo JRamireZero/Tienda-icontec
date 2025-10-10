@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <style>
+        :root {
+             --primary-blue: #0073aa;
+            --primary-green: #1ec773;
+            --gray-light: #f5f6fa;
+            --text-light: #6c757d;
+            --transition-quick: 0.2s ease;
+            --border-radius: 6px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+    
+
+        /* Breadcrumb */
+        .product-breadcrumb {
+            padding: 1.5rem 2rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.98rem;
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item:before {
+            content: "›";
+            color: var(--text-light);
+            margin: 0 0.5em;
+            font-size: 1em;
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color var(--transition-quick);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .breadcrumb-item a:hover,
+        .breadcrumb-item a:focus {
+            color: var(--primary-green);
+            outline: none;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--text-light);
+            font-weight: 600;
+            cursor: default;
+        }
+    </style>
+
+    <div class="product-breadcrumb">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="/normas">Normas</a></li>
+                <li class="breadcrumb-item"><a href="/sectores">Aceites y Grasas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">NTC-ISO 12966-4:2015</li>
+            </ol>
+        </nav>
+    </div>
+
+</body>
+
+</html>
