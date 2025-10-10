@@ -164,7 +164,7 @@ body{
 /* Card buttons */
 .icontec-card-btn {
     display: inline-block;
-    background: #0073aa;
+    background: linear-gradient(45deg, #0073A9, #1ec773);
     color: #fff;
     padding: 8px 18px;
     border-radius: 4px;

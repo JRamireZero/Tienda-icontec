@@ -644,15 +644,34 @@
             .ico-shop-nav-container ul {
                 flex-direction: column;
                 align-items: stretch;
+                /* Mantener la alineación natural sin centrar */
+                justify-content: flex-start;
+            }
+
+            .ico-shop-nav-container li {
+                width: 100%;
+                /* Asegurar que ocupen todo el ancho disponible */
+            }
+
+            .ico-shop-nav-container a {
+                /* Mantener la alineación a la izquierda */
+                justify-content: flex-start;
+                text-align: left;
+                width: 100%;
             }
 
             .ico-store-nav .container {
                 flex-direction: column;
                 gap: 1rem;
+                /* Alinear elementos a la izquierda */
+                align-items: flex-start;
             }
 
             .ico-user-fixed-actions {
                 margin-top: 1rem;
+                /* Centrar solo los iconos de acción */
+                align-self: center;
+                width: auto;
             }
 
             .nav-container {
@@ -660,10 +679,14 @@
                 gap: 1rem;
             }
 
-            /* Dropdown responsivo en móvil */
+            /* Dropdown responsivo en móvil - FIX PRINCIPAL */
+            .dropdown-nav {
+                position: relative;
+                width: 100%;
+            }
+
             .dropdown-nav .dropdown-menu {
                 position: static;
-                opacity: 1;
                 visibility: visible;
                 transform: none;
                 box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -672,22 +695,79 @@
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease-out;
+                width: 100%;
+                /* Mantener el ancho completo */
+                left: 0;
+                right: auto;
+                /* Eliminar cualquier centrado automático */
+                margin: 0;
+                border-radius: 0;
+                /* Simplificar en móvil */
             }
 
-            .dropdown-nav:hover .dropdown-menu {
+            .dropdown-nav:hover .dropdown-menu,
+            .dropdown-nav.active .dropdown-menu,
+            .dropdown-menu.show {
                 max-height: 300px;
+                opacity: 1;
+            }
+
+            .dropdown-nav .dropdown-menu li {
+                width: 100%;
             }
 
             .dropdown-nav .dropdown-menu a {
                 color: rgba(255, 255, 255, 0.9);
                 border-left: none;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+                /* Asegurar ancho completo */
+                text-align: left;
+                /* Alineación explícita a la izquierda */
+                justify-content: flex-start;
+                /* Contenido alineado a la izquierda */
+                padding-left: 2rem;
+                /* Identación para mostrar jerarquía */
             }
 
             .dropdown-nav .dropdown-menu a:hover {
                 background: rgba(255, 255, 255, 0.2);
                 color: var(--white);
                 transform: none;
+                /* Eliminar transformaciones que puedan causar desplazamiento */
+            }
+
+            /* Asegurar que los iconos no se centren */
+            .dropdown-nav .dropdown-menu a i {
+                margin-right: 0.5rem;
+                flex-shrink: 0;
+            }
+        }
+
+        /* Estilos adicionales para mejorar la experiencia móvil */
+        @media (max-width: 768px) {
+            /* Prevenir cualquier centrado no deseado */
+            .ico-shop-nav-container {
+                text-align: left;
+            }
+
+            .dropdown-nav > a {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Mejorar la accesibilidad táctil */
+            .dropdown-nav .dropdown-menu a {
+                min-height: 44px;
+                /* Tamaño mínimo recomendado para touch */
+                display: flex;
+                align-items: center;
+                line-height: 1.4;
+            }
+
+            /* Animación suave para la apertura del menú */
+            .dropdown-nav .dropdown-menu {
+                transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
         }
 
