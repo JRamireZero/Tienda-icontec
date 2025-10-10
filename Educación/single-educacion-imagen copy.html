@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NTC-ISO 12966-4:2015 - Tienda ICONTEC</title>
     
+
+           <!-- Google Fonts - Catamaran -->
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -40,54 +44,7 @@
             color: var(--text-dark);
             line-height: 1.6;
         }
-
-        /* Header simplificado para single page */
-        .mini-header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .mini-header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .mini-header .logo img {
-            height: 40px;
-            filter: brightness(0) invert(1);
-        }
-
-        .mini-header .actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .mini-header .actions a {
-            color: var(--white);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: var(--transition-smooth);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .mini-header .actions a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
+ 
 
         /* Contenedor principal */
         .main-container {
@@ -100,33 +57,7 @@
             overflow: hidden;
         }
 
-        /* Breadcrumb */
-        .product-breadcrumb {
-            padding: 1.5rem 2rem 0;
-            background: var(--gray-light);
-        }
-
-        .breadcrumb {
-            background: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb-item a {
-            color: var(--primary-blue);
-            text-decoration: none;
-            transition: var(--transition-quick);
-        }
-
-        .breadcrumb-item a:hover {
-            color: var(--primary-green);
-        }
-
-        .breadcrumb-item.active {
-            color: var(--text-light);
-        }
-
+      
         /* Layout del producto */
         .product-layout {
             display: grid;
@@ -250,7 +181,7 @@
             padding: 1.5rem;
         }
 
-        /* Especificaciones técnicas */
+    /* Especificaciones técnicas */
         .technical-specs {
             background: var(--gray-light);
             padding: 2rem;
@@ -325,8 +256,7 @@
         }
 
         .format-warning {
-            background: linear-gradient(45deg, #ffc107, #fd7e14);
-            color: var(--white);
+          background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));            color: var(--white);
             padding: 1rem;
             border-radius: var(--border-radius);
             text-align: center;
@@ -440,7 +370,9 @@
             font-weight: 600;
         }
 
-        /* Botón de agregar al carrito */
+
+
+         /* Botón de agregar al carrito */
         .add-to-cart {
             width: 100%;
             padding: 1rem;
@@ -481,21 +413,7 @@
             transform: translateY(0);
         }
 
-        /* Información adicional */
-        .additional-info {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .additional-info strong {
-            color: #856404;
-        }
-
-        /* Animaciones */
+            /* Animaciones */
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -529,17 +447,12 @@
             75% { transform: translateX(5px); }
         }
 
+      
         /* Responsive */
         @media (max-width: 768px) {
-            .mini-header .container {
-                flex-direction: column;
-                gap: 1rem;
-            }
+     
 
-            .mini-header .actions {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
+         
 
             .product-layout {
                 grid-template-columns: 1fr;
@@ -560,10 +473,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .mini-header .actions a {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
+         
         }
 
         /* Estados de focus para accesibilidad */
@@ -578,7 +488,6 @@
         html {
             scroll-behavior: smooth;
         }
-
         /* Loading states */
         .loading {
             opacity: 0.7;
@@ -604,88 +513,66 @@
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
+
+        .tag-tipo,
+    .tag-gratis {
+      font-size: 1rem;
+      padding: 0.5em 0.75em;
+      border-radius: 25px;
+      display: inline-block;
+      font-weight: 600;
+      transition: transform .3s ease;
+      color: #fff;
+      text-decoration: none;
+    }
+
     </style>
 </head>
 
 <body>
-    <!-- Mini Header -->
-    <div class="mini-header">
-        <div class="container">
-            <div class="logo">
-                <a href="/">
-                    <img src="https://tienda.icontec.org/pub/media/Hipertexto/main/logotipo.svg" alt="ICONTEC">
-                </a>
-            </div>
-            <div class="actions">
-                <a href="/tienda">
-                    <i class="bi bi-arrow-left"></i>
-                    Volver a la tienda
-                </a>
-                <a href="/carrito">
-                    <i class="bi bi-bag"></i>
-                    Carrito (0)
-                </a>
-                <a href="/cuenta">
-                    <i class="bi bi-person"></i>
-                    Mi cuenta
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- Contenedor principal -->
     <div class="main-container">
-        <!-- Breadcrumb -->
-        <div class="product-breadcrumb">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="/normas">Normas</a></li>
-                    <li class="breadcrumb-item"><a href="/sectores">Aceites y Grasas</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">NTC-ISO 12966-4:2015</li>
-                </ol>
-            </nav>
-        </div>
+      
 
         <!-- Layout del producto -->
         <div class="product-layout">
             <!-- Información del producto -->
             <div class="product-info">
+                <div class="d-flex flex-wrap align-items-center gap-3 mb-4 info-box">
                 <div class="reference-code">
                    Curso - Virtual
                 </div>
-                  <a class="reference-code" href="#full-text-info">
+                  <a class="reference-code tag-tipo" href="#full-text-info">
                     Mas detalles.
                   </a>
+                    <a class="reference-code tag-gratis" href="#curso-gratis-info">
+                   + Curso gratuito
+                  </a>
+   </div>
+
+
 
                 <h1 class="product-title">
-                    Grasas y aceites animales y vegetales. Cromatografía de gases de ésteres metílicos de ácidos grasos. Parte 4: Determinación por cromatografía capilar de gases
+                   Normatividad Técnica
                 </h1>
 
                 <h2 class="product-subtitle">
-                    Animal and vegetable fats and oils. Gas chromatography of fatty acid methyl esters. Part 4: Determination by capillary gas chromatography
+                   Technical Regulations
                 </h2>
 
-                <!-- Estado del producto -->
-                <div class="product-status">
-                    <div>
-                        <span class="status-badge">Vigente</span>
-                        <span>Está comprando una Norma Vigente</span>
-                    </div>
-                    <a href="#" class="preview-btn" onclick="openPreview()">
-                        <i class="bi bi-eye"></i>
-                        Vista Previa
-                    </a>
-                </div>
-
-                <!-- Descripción expandible -->
+           
+                   <!-- Descripción expandible -->
                 <div class="description-panel">
                     <button class="description-toggle" onclick="toggleDescription()">
                         <span>Descripción técnica</span>
                         <i class="bi bi-chevron-down" id="desc-icon"></i>
                     </button>
                     <div class="description-content" id="description-content">
-                        Esta parte de la serie ISO 12966 especifica un método para la determinación de ésteres metílicos de ácidos grasos (FAME, por su sigla en inglés) derivados de la transesterificación o esterificación de grasas, aceites y ácidos grasos mediante cromatografía capilar de gases (GLC). Los ésteres metílicos de ácidos grasos de C8 a C24 se pueden separar con la ayuda de esta parte de la serie ISO 12966, incluidos los ésteres metílicos de ácidos grasos saturados, los ésteres metílicos de ácidos grasos monoinsaturados cis y trans, y los ésteres metílicos de ácidos grasos poliinsaturados cis y trans.
+                       En este curso profundizarás en las normativas técnicas de calidad ICONTEC,
+          aprendiendo a interpretar y aplicar los estándares más relevantes. Está diseñado
+          para profesionales que buscan fortalecer sus competencias en gestión documental,
+          cumplimiento normativo y auditoría interna.
                     </div>
                 </div>
 
@@ -693,35 +580,26 @@
                 <div class="technical-specs">
                     <h3>Especificaciones Técnicas</h3>
                     <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-label">
-                                <i class="bi bi-people"></i>
-                                Comité técnico
-                            </div>
-                            <div class="spec-value">
-                                <a href="/comites/049-aceites-y-grasas">049 ACEITES Y GRASAS VEGETALES Y ANIMALES COMESTIBLES</a>
-                            </div>
-                        </div>
+                        
                         
                         <div class="spec-item">
                             <div class="spec-label">
                                 <i class="bi bi-diagram-3"></i>
-                                Macrosector
-                            </div>
-                            <div class="spec-value">
-                                <a href="/macrosectores/agro-y-alimentos">AGRO Y ALIMENTOS</a>
+                               Tipo: <div class="spec-value">
+                               Curso
                             </div>
                         </div>
-                        
-                        <div class="spec-item">
+
                             <div class="spec-label">
-                                <i class="bi bi-list-ol"></i>
-                                Clasificación ICS
+                                <i class="bi bi-diagram-3"></i>
+                              Modalidad: 
+                               <div class="spec-value">
+                                Virtual
                             </div>
-                            <div class="spec-value">
-                                <strong>67.200.10</strong> ACEITES Y GRASAS DE ORIGEN VEGETAL Y ANIMAL
                             </div>
+                           
                         </div>
+                                           
                         
                         <div class="spec-item">
                             <div class="spec-label">
@@ -731,21 +609,22 @@
                             <div class="spec-value">1.0</div>
                         </div>
                         
-                        <div class="spec-item">
+                         <div class="spec-item">
                             <div class="spec-label">
                                 <i class="bi bi-calendar"></i>
-                                Fecha de Ratificación
+                                Fecha inicio:
+                                <div class="spec-value">10 Octubre 2025</div>
                             </div>
-                            <div class="spec-value">05/08/2025</div>
-                        </div>
-                        
-                        <div class="spec-item">
+                            
+                            <!--datos -->
                             <div class="spec-label">
-                                <i class="bi bi-translate"></i>
-                                Idioma
+                                <i class="bi bi-calendar"></i>
+                                Fecha límite de inscripción:
+                                <div class="spec-value">05 - octubre- 2025</div>
                             </div>
-                            <div class="spec-value">Español</div>
+                            
                         </div>
+                       
                         
                         <div class="spec-item">
                             <div class="spec-label">
@@ -755,13 +634,7 @@
                             <div class="spec-value">23</div>
                         </div>
                         
-                        <div class="spec-item">
-                            <div class="spec-label">
-                                <i class="bi bi-file-earmark-zip"></i>
-                                Tamaño archivo eBook
-                            </div>
-                            <div class="spec-value">1.12 MB</div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
