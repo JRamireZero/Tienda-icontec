@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="https://tienda.icontec.org/pub/media/favicon/default/favicon.ico">
+    <link rel="stylesheet" href="index.css">
+     <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+      <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+</head>
+<body>
+    
+
+
+
+   <header>
+        <!-- Elemento decorativo -->
+        <div class="ico-circle-header-container">
+            <div class="ico-circle"></div>
+        </div>
+
+        <!-- Navegación superior -->
+        <div class="ico-top-navigation">
+            <div class="container">
+                <div class="top-nav-flex">
+                    <!-- Logo y mensaje de bienvenida -->
+                    <div class="welcome-section">
+                        <div class="ico-logo-container">
+                            <a href="https://tienda.icontec.org/" aria-label="store logo">
+                                <img src="https://tienda.icontec.org/pub/media/Hipertexto/main/logotipo.svg" alt="Logo Icontec">
+                            </a>
+                        </div>
+                        <strong>Bienvenid@ a nuestra Tienda virtual</strong>
+                    </div>
+
+                    <!-- Buscador compacto -->
+                    <div class="search-section">
+                        <form action="https://tienda.icontec.org/catalogsearch/result/" method="get" class="compact-search">
+                            <div class="search-input-wrapper">
+                                <input type="search" name="q" placeholder="¿Qué estás buscando?" maxlength="128">
+                                <button type="submit" class="search-icon-btn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Enlaces y selector de moneda -->
+                    <div class="nav-links">
+                        <a href="https://www.icontec.org/" target="_blank" rel="noopener">
+                            <i class="bi bi-globe me-2"></i>
+                            Portal Icontec
+                        </a>
+                        <div class="switcher currency switcher-currency">
+                            <div class="switcher-trigger" data-toggle="dropdown" role="button" tabindex="0" title="Cambiar moneda">
+                                <i class="bi bi-cash me-1"></i>
+                                <span>COP</span>
+                                <i class="bi bi-chevron-down ms-1"></i>
+                            </div>
+                            <ul class="switcher-dropdown" data-target="dropdown">
+                                <li>
+                                    <a href="#" title="Cambiar a dólar estadounidense">
+                                        <i class="bi bi-currency-dollar me-2"></i>
+                                        USD
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  
+
+     
+        <!-- Navegación de categorías -->
+        <div class="ico-store-nav">
+            <div class="container">
+               
+
+                <div class="ico-shop-nav-container" role="navigation">
+                    <ul>
+                        <li class="dropdown-nav">
+                            <a href="/normas.html">
+                                <i class="bi bi-clipboard-check me-2"></i>
+                                Normas
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/sectores.html">
+                                        <i class="bi bi-clipboard-check me-2"></i>
+                                        Normas técnicas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/comparaciones.html">
+                                        <i class="bi bi-bar-chart me-2"></i>
+                                        E-compara
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-nav">
+                            <a href="/educacion.html">
+                                <i class="bi bi-mortarboard me-2"></i>
+                                Educación
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/cursos.html">
+                                        <i class="bi bi-book me-2"></i>
+                                        Cursos y Eventos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/publicaciones.html">
+                                        <i class="bi bi-journal-bookmark me-2"></i>
+                                        Publicaciones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/sala-de-consulta/">
+                                        <i class="bi bi-chat-dots me-2"></i>
+                                        Sala de Consulta
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/outlet.html">
+                                <i class="bi bi-lightning me-2"></i>
+                                <span class="sr-only">Nuevo: </span>Outlet
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ico-user-fixed-actions">
+                    
+                    
+                    <div class="minicart-wrapper" title="Mi carrito de compras">
+                        <a class="showcart" href="https://tienda.icontec.org/checkout/cart">
+                            <i class="bi bi-bag"></i>
+                            <span class="counter qty">
+                                <span class="counter-number">0</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="ico-account-container" title="Mi cuenta">
+                        <i class="bi bi-person-circle"></i>
+                        <ul>
+                            <li>
+                                <a href="https://tienda.icontec.org/customer/account/">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://tienda.icontec.org/customer/account/">
+                                    Registrarse
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+
+
+  <div class="carrusel w-100">
+    <div
+      id="bannerCarousel"
+      class="carousel slide carousel-fade pointer-event"
+      data-bs-ride="carousel"
+      data-bs-interval="6000"
+    >
+      <!-- Indicadores -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      </div>
+
+      <!-- Slides con imágenes para escritorio y móvil -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-desktop-descuento-primera-compra.png" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/banner-mobile-descuento-primera-compra.png" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-sala-de-consulta_desktop.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/banner-sala-de-consulta_mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-blockchain-2023-tv_1.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/blockchain-2023-mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="#">
+            <img class="d-none d-md-block" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/b/a/banner-campus-feb-2025-tienda_13_desktop.jpg" alt="Banner escritorio">
+            <img class="d-block d-md-none" src="https://tienda.icontec.org/media/mageplaza/bannerslider/banner/image/mobile/BANNER-Campus-Feb-2025-Tienda-S_13_mobile.jpg" alt="Banner móvil">
+          </a>
+        </div>       
+      </div>
+
+      <!-- Controles Prev/Next -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+
+
+
+  <div class="container">   
+    <h1>Normas</h1>
+    <div class="row icontec-product-cards">
+        <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+  <div class="container">   
+    <h1>Educacion</h1>
+    <div class="row icontec-product-cards">
+        <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+            <div class="col-md-3 mb-4">
+            <a href="https://portalclientes-icontec-org-qa.go-vip.net/product/alimentos-para-animales-alimento-completo-para-gatos/" class="icontec-card-link">
+                <div class="icontec-card">
+                    <div class="icontec-card-img-container">
+                        <img loading="lazy" decoding="async"
+                            src="https://icontec.s3.amazonaws.com/img/NTC-ISO14001_2015_AMD%201_2024.jpg"
+                            width="600" height="600" class="icontec-card-img" alt="Placeholder">
+                        <div class="icontec-card-overlay">
+                            <div class="icontec-card-overlay-title"><strong>Alimentos para animales. Alimento completo para gatos.</strong></div>
+                            <div class="icontec-card-overlay-content"></div>
+                            <div class="icontec-card-overlay-price mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="icontec-card-title">Alimentos para animales. Alimento completo para gatos.</div>
+                    <div class="icontec-card-content"></div>
+                    <div class="icontec-card-action-bar">
+                        
+                        <div class="icontec-card-green-bar"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="icontec-card-vigencia">VIGENCIA</div>
+                    </div>
+
+                    <div class="icontec-card-format-table">
+                        <div class="format-option">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>Ebook</span>
+                            <span class="format-price">$79.900</span>
+                        </div>
+                        <div class="format-option">
+                            <i class="bi bi-book"></i>
+                            <span>Impreso</span>
+                            <span class="format-price">$99.900</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+         
+
+    </div>
+</div>
+
+
+
+
+<!-- Benefits Section -->
+<section class="benefits-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Nuestros Beneficios</h2>
+                <p class="text-muted">Todo lo que necesitas en un solo lugar</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- eBooks Access -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h4 class="benefit-title">Acceso a eBooks</h4>
+                    <p class="benefit-description">Suscripción a contenidos digitales para Normas y Publicaciones.</p>
+                </div>
+            </div>
+            
+            <!-- Online Payments -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <h4 class="benefit-title">Pagos en línea</h4>
+                    <p class="benefit-description">Diferentes opciones de pago: tarjetas débito, crédito y asincrónicos.</p>
+                </div>
+            </div>
+            
+            <!-- Customer Support -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h4 class="benefit-title">Atención al cliente</h4>
+                    <p class="benefit-description">Soporte técnico en proceso de compra, descarga y lectura.</p>
+                </div>
+            </div>
+            
+            <!-- Shipping -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h4 class="benefit-title">Envíos</h4>
+                    <p class="benefit-description">Cobertura a todo el territorio nacional y envíos internacionales.</p>
+                </div>
+            </div>
+            
+            <!-- Training -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h4 class="benefit-title">Formación</h4>
+                    <p class="benefit-description">Acceso a cursos, programas y diplomados en modalidad virtual y presencial.</p>
+                </div>
+            </div>
+            
+            <!-- Additional Benefit (Optional) -->
+            <div class="col-lg-4 col-md-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4 class="benefit-title">Garantía de Calidad</h4>
+                    <p class="benefit-description">Contenido certificado y actualizado según estándares internacionales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<footer>
+    <div class="container">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="footer-grid">
+                
+                <!-- Columna de Contacto -->
+                <div class="footer-column">
+                    <h3><i class="fas fa-headset"></i>Atención al Cliente</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-details">
+                                <strong>Bogotá:</strong>
+                                <span>(57 601) 5806419</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="contact-details">
+                                <strong>Resto del país:</strong>
+                                <span>01 8000 94 9000</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-details">
+                                <strong>Tienda Virtual:</strong>
+                                <span><a href="mailto:tienda.virtual@icontec.org">tienda.virtual@icontec.org</a></span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-details">
+                                <strong>Atención Corporativa:</strong>
+                                <span><a href="mailto:cliente@icontec.org">cliente@icontec.org</a></span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-details">
+                                <strong>Dirección:</strong>
+                                <span>Av Calle 26 No 69 – 76 / Torre 4 / Piso 9, Edificio Elemento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna de Ayuda -->
+                <div class="footer-column">
+                    <h3><i class="fas fa-question-circle"></i>¿Necesitas Ayuda?</h3>
+                    
+                    <!-- Alertas informativas -->
+                    <div class="info-alerts">
+                        <div class="alert-box alert-success">
+                            ✅ Los eBooks comprados en la Tienda ICONTEC se acceden mediante vista en línea dentro de este mismo entorno, o, para vista fuera de línea, a través de una aplicación de lectura (iPC Reader). <strong>El usuario final no recibirá archivo PDF ni por correo ni por descarga.</strong>
+                        </div>
+                        
+                        <div class="alert-box alert-info">
+                            ⚠️ <strong>Para tener en cuenta:</strong> Las facturas electrónicas son emitidas por <strong>Hipertexto SAS</strong>, entidad delegada para la administración del portal, y no por <strong>ICONTEC</strong>. Si tienes problemas con tu factura, por favor contáctanos en <a href="mailto:sac@hipertexto.com.co">sac@hipertexto.com.co</a>
+                        </div>
+                    </div>
+
+                    <!-- Enlaces de ayuda -->
+                    <ul>
+                        <li><a href="https://tienda.icontec.org/preguntas-frecuentes">FAQ's - Preguntas Frecuentes</a></li>
+                        <li><a href="https://tienda.icontec.org/terminos-y-condiciones">Términos y Condiciones</a></li>
+                        <li><a href="https://tienda.icontec.org/politicas-de-pago-y-devolucion">Políticas de Pago y Devolución</a></li>
+                        <li><a href="https://www.icontec.org/wp-content/uploads/2020/08/POLTICA-TRATAMIENTO-DE-DATOS-PERSONALES.pdf" target="_blank">Política de Tratamiento de Datos Personales</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna de Newsletter -->
+                <div class="footer-column">
+                    <div class="newsletter-section">
+                        <h3><i class="fas fa-envelope-open-text"></i>Mantente Actualizado</h3>
+                        <p>Suscríbete y te enviaremos información de nuevas normas, publicaciones y cursos.</p>
+                        
+                        <form class="newsletter-form" novalidate="novalidate" action="/newsletter/subscriber/newaction" method="post" id="newsletter-validate-detail">
+                            <input name="email" type="email" id="newsletter" placeholder="Ingresa tu correo electrónico" data-validate="{required:true, 'validate-email':true}">
+                            <button title="Suscribirse" type="submit" aria-label="Subscribe">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        
+                        <!-- Redes sociales -->
+                        <div class="social-media-icons">
+                            <h4>Síguenos en:</h4>
+                            <div class="social-icons-container">
+                                <a href="#" class="social-icon-link" aria-label="Facebook">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="#" class="social-icon-link" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon-link" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-icon-link" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Panel de ayuda -->
+<div class="help-panel" id="helpPanel">
+    <div class="help-panel-content">
+        <button class="close-btn" onclick="toggleHelpPanel()">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="https://tienda.icontec.org/pub/media/Hipertexto/main/logotipo_b.svg" 
+                 alt="ICONTEC Logo" style="width: 190px;">
+        </div>
+
+        <h3>Links de Interés</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1rem;">
+                <a href="https://tienda.icontec.org/instructivo-descarga-lectura-ebooks" style="color: var(--primary-blue); text-decoration: none;">
+                    ¿Cómo descargar y leer mis libros electrónicos?
+                </a>
+            </li>
+            <li style="margin-bottom: 1rem;">
+                <a href="https://tienda.icontec.org/preguntas-frecuentes" style="color: var(--primary-blue); text-decoration: none;">
+                    Preguntas frecuentes - FAQ's
+                </a>
+            </li>
+        </ul>
+
+        <hr>
+
+        <h3>Atención al Cliente</h3>
+        <p>Nuestro equipo estará disponible para ti en los siguientes horarios:</p>
+        <p><strong>Lunes a Jueves de 7:00 a.m a 6:00 p.m.<br>
+        Viernes de 7:00 a.m a 5:00 p.m.<br>
+        Sábados de 9:00 a.m a 12:00 p.m.</strong></p>
+        
+        <p>Llamando a las líneas de Atención al Cliente:</p>
+        <ul style="list-style: disc; padding-left: 25px;">
+            <li><strong>Bogotá</strong>: <a href="tel:576015806419">+57 601 5806419</a></li>
+            <li><strong>Resto del país</strong>: 01 8000 94 9000</li>
+        </ul>
+
+        <hr>
+
+        <p>Si tienes alguna inquietud sobre tu pedido:</p>
+        <ul style="list-style: disc; padding-left: 25px;">
+            <li><a href="mailto:tienda.virtual@icontec.org">tienda.virtual@icontec.org</a></li>
+        </ul>
+
+        <p>Para temas institucionales:</p>
+        <ul style="list-style: disc; padding-left: 25px;">
+            <li><a href="mailto:cliente@icontec.org">cliente@icontec.org</a></li>
+        </ul>
+
+        <div style="margin: 1rem 0; background-color: #FFF986; border-radius: 12px; padding: 1rem; font-size: 13px;">
+            ✅ Los eBooks comprados en la Tienda ICONTEC se acceden mediante vista en línea dentro de este mismo entorno, o, para vista fuera de línea, a través de una aplicación de lectura (iPC Reader). <strong>El usuario final no recibirá archivo PDF ni por correo ni por descarga.</strong>
+        </div>
+
+        <div style="margin: 1rem 0; color: #004085; background-color: #cce5ff; border-radius: 12px; padding: 1rem; font-size: 13px;">
+            ⚠️ <strong>Para tener en cuenta:</strong> Las facturas electrónicas son emitidas por <strong>Hipertexto SAS</strong>, entidad delegada para la administración del portal, y no por <strong>ICONTEC</strong>. Si tienes problemas con tu factura, por favor contáctanos en <a href="mailto:sac@hipertexto.com.co">sac@hipertexto.com.co</a>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay del panel de ayuda -->
+<div class="help-overlay" id="helpOverlay" onclick="toggleHelpPanel()"></div>
+
+        <div class="icontec-logo">
+            <a href="#" title="logo-icontec">
+                <img src="https://tienda.icontec.org/pub/media/Hipertexto/main/logotipo_b.svg" alt="" class="img-responsive icontec-header-logo" style="width: 190px;margin:0 auto;">
+            </a>
+        </div>
+       
+</footer>
+
+
+
+
+      <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
+    <script>
+        // Funcionalidad del navbar optimizada
+        $(document).ready(function() {
+            let lastScrollTop = 0;
+            let scrollTimer = null;
+            
+            // Animación de scroll para el navbar
+            $(window).scroll(function() {
+                const scrollTop = $(this).scrollTop();
+                
+                if (scrollTop > 50) {
+                    $('body').addClass('scrolled');
+                } else {
+                    $('body').removeClass('scrolled');
+                }
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    $('.ico-top-navigation').addClass('scroll-hidden');
+                } else {
+                    $('.ico-top-navigation').removeClass('scroll-hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+                $('body').addClass('scrolling');
+                
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function() {
+                    $('body').removeClass('scrolling');
+                }, 150);
+            });
+            
+            // Animaciones de entrada para elementos del menú
+            $('.ico-shop-nav-container li').each(function(index) {
+                $(this).css({
+                    'animation-delay': (index * 0.1) + 's',
+                    'animation': 'slideInUp 0.6s ease-out forwards'
+                });
+            });
+            
+            // Efecto ripple en clicks
+            $('.ico-shop-nav-container a, .ico-top-navigation a, .ico-categories-menu a').on('click', function(e) {
+                const ripple = $('<span class="ripple"></span>');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.css({
+                    width: size + 'px',
+                    height: size + 'px',
+                    left: x + 'px',
+                    top: y + 'px'
+                });
+                
+                $(this).append(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+            
+            // Funcionalidad del buscador
+            const searchInput = $('input[name="q"]');
+            const searchButton = $('button[type="submit"]');
+            
+            searchInput.on('input', function() {
+                const value = $(this).val();
+                if (value.length > 0) {
+                    searchButton.prop('disabled', false);
+                } else {
+                    searchButton.prop('disabled', true);
+                }
+                
+                // Analytics tracking para búsquedas específicas
+                if (value.toLowerCase().includes('libre competencia')) {
+                    searchButton.attr('data-ga', 'Libre competencia');
+                } else if (value.toLowerCase().includes('ntc 6378')) {
+                    searchButton.attr('data-ga', 'NTC 6378');
+                } else {
+                    searchButton.removeAttr('data-ga');
+                }
+            });
+            
+            // Smooth scroll para enlaces internos
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                const target = $(this.getAttribute('href'));
+                if (target.length) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 100
+                    }, 800);
+                }
+            });
+            
+            // Observer para animaciones lazy
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            document.querySelectorAll('.ico-shop-nav-container li').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Funcionalidad del selector de moneda
+            $('.switcher-currency .switcher-trigger').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().toggleClass('active');
+            });
+
+            // Cerrar dropdown al hacer click fuera
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.switcher-currency').length) {
+                    $('.switcher-currency').removeClass('active');
+                }
+            });
+
+            // Cambio de moneda
+            $('.switcher-dropdown a').on('click', function(e) {
+                e.preventDefault();
+                const currency = $(this).find('span, i').last().text().trim();
+                const currencyCode = currency.split(' ')[0];
+                $('.switcher-trigger span').text(currencyCode);
+                $('.switcher-currency').removeClass('active');
+                
+                // Aquí puedes agregar la lógica para cambiar la moneda
+                console.log('Moneda cambiada a:', currencyCode);
+            });
+
+            // Funcionalidad de submenús desplegables
+            $('.dropdown-nav').on('mouseenter', function() {
+                $(this).addClass('active');
+                $(this).find('.dropdown-menu').addClass('show');
+            }).on('mouseleave', function() {
+                $(this).removeClass('active');
+                $(this).find('.dropdown-menu').removeClass('show');
+            });
+
+            // Funcionalidad para móvil - click en lugar de hover
+            if (window.innerWidth <= 768) {
+                $('.dropdown-nav > a').on('click', function(e) {
+                    e.preventDefault();
+                    const $parent = $(this).parent();
+                    const $menu = $parent.find('.dropdown-menu');
+                    
+                    // Cerrar otros menús abiertos
+                    $('.dropdown-nav').not($parent).removeClass('active').find('.dropdown-menu').removeClass('show');
+                    
+                    // Toggle del menú actual
+                    $parent.toggleClass('active');
+                    $menu.toggleClass('show');
+                });
+            }
+
+            // Cerrar submenús al redimensionar la ventana
+            $(window).on('resize', function() {
+                if (window.innerWidth > 768) {
+                    $('.dropdown-nav').removeClass('active');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            });
+        });
+        
+        // CSS adicional para las animaciones
+        const additionalCSS = `
+            <style>
+                @keyframes slideInUp {
+                    from { opacity: 0; transform: translateY(30px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                .scroll-hidden {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+                
+                .scrolling header {
+                    transform: translateY(-2px);
+                }
+                
+                .ripple {
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    pointer-events: none;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s linear;
+                }
+                
+                @keyframes ripple-animation {
+                    to { transform: scale(4); opacity: 0; }
+                }
+                
+                .animate-in {
+                    animation: fadeInScale 0.6s ease-out forwards;
+                }
+                
+                @keyframes fadeInScale {
+                    from { opacity: 0; transform: scale(0.8); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+
+                /* Estados activos del selector de moneda */
+                .switcher-currency.active .switcher-trigger {
+                    background: rgba(255, 255, 255, 0.2);
+                    border-color: rgba(255, 255, 255, 0.5);
+                }
+
+                .switcher-currency.active .switcher-trigger i.bi-chevron-down {
+                    transform: rotate(180deg);
+                }
+
+                .switcher-currency.active .switcher-dropdown {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 9999 !important;
+                }
+
+                /* Estilos adicionales para submenús */
+                .dropdown-nav.active .dropdown-menu {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                .dropdown-menu.show {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) !important;
+                    z-index: 1500 !important;
+                }
+
+                /* Asegurar que el dropdown sea visible por encima de todo */
+                .dropdown-nav:hover .dropdown-menu {
+                    z-index: 1500 !important;
+                }
+
+                /* Animación de entrada para elementos del submenú */
+                .dropdown-menu li {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+
+                .dropdown-nav:hover .dropdown-menu li,
+                .dropdown-nav.active .dropdown-menu li,
+                .dropdown-menu.show li {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(1),
+                .dropdown-nav.active .dropdown-menu li:nth-child(1),
+                .dropdown-menu.show li:nth-child(1) { transition-delay: 0.1s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(2),
+                .dropdown-nav.active .dropdown-menu li:nth-child(2),
+                .dropdown-menu.show li:nth-child(2) { transition-delay: 0.2s; }
+
+                .dropdown-nav:hover .dropdown-menu li:nth-child(3),
+                .dropdown-nav.active .dropdown-menu li:nth-child(3),
+                .dropdown-menu.show li:nth-child(3) { transition-delay: 0.3s; }
+                
+                @media (prefers-reduced-motion: reduce) {
+                    *, *::before, *::after {
+                        animation-duration: 0.01ms !important;
+                        animation-iteration-count: 1 !important;
+                        transition-duration: 0.01ms !important;
+                    }
+                }
+            </style>
+        `;
+        
+        document.head.insertAdjacentHTML('beforeend', additionalCSS);
+    </script>
+
+      <script>
+    function toggleHelpPanel() {
+        const helpPanel = document.getElementById('helpPanel');
+        const helpOverlay = document.getElementById('helpOverlay');
+        
+        if (helpPanel && helpOverlay) {
+            helpPanel.classList.toggle('active');
+            helpOverlay.classList.toggle('active');
+        }
+    }
+
+    // Validación del formulario de newsletter
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('newsletter-validate-detail');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const email = document.getElementById('newsletter').value;
+                
+                if (!email || !email.includes('@')) {
+                    e.preventDefault();
+                    alert('Por favor, ingresa un correo electrónico válido.');
+                    return false;
+                }
+                
+                console.log('Newsletter subscription for:', email);
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>
