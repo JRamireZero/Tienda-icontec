@@ -1,488 +1,1313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Catálogo de Educación</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Educación - Demo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Catamaran -->
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #1565c0;
+            --primary-green: #1ec773;
+            --gradient-primary: linear-gradient(45deg, #1565c0, #1ec773);
+        }
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"/>
+        .catalogo-educacion-container {
+            font-family: 'Catamaran', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            min-height: 100vh;
+        }
 
-  <!-- Bootstrap Icons -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    rel="stylesheet"/>
+        .catalogo-educacion-container * {
+            box-sizing: border-box;
+        }
 
-  <style>
-    /* RESET */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        /* HEADER DEL CATÁLOGO */
+        .catalogo-header {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-green);
+        }
 
-    body {
-      font-family: 'Hind', sans-serif;
-      background: #f5f5f5;
-      color: #4d5974;
-      padding: 20px;
-    }
+        .catalogo-title {
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-    }
+        /* LAYOUT PRINCIPAL - 3 COLUMNAS */
+        .catalogo-campus-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
 
-    /* BOTÓN FILTROS (móvil) */
-    .filters-toggle {
-      display: none;
-      background: #0085ca;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-    }
-    @media (max-width: 900px) {
-      .filters-toggle {
-        display: block;
-      }
-    }
+        .catalogo-main-content {
+            min-height: 400px;
+        }
 
-    /* LAYOUT PRINCIPAL */
-    .catalogo-campus-container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-      max-width: 1200px;
-      margin: auto;
-      align-items: start;
-    }
-    @media (max-width: 900px) {
-      .catalogo-campus-container {
-        grid-template-columns: 1fr;
-      }
-    }
+        /* SIDEBAR DE FILTROS */
+        .filtros-sidebar {
+            background: #fff;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 2rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
 
-    /* SIDEBAR DE FILTROS */
-    .filtros-sidebar {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-size: .9rem;
-      align-self: start;
-    }
-    @media (max-width: 900px) {
-      .filtros-sidebar {
-        display: none;
-        position: absolute;
-        top: 0; left: 0;
-        width: 80%;
-        max-width: 280px;
-        height: 100vh;
-        overflow-y: auto;
-        z-index: 100;
-      }
-      .filtros-sidebar.show {
-        display: block;
-      }
-    }
+        .filtros-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 2px solid #f1f3f4;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
 
-    /* ACORDEÓN MODERNO */
-    details.accordion-modern {
-      margin-bottom: 1rem;
-    }
-    details.accordion-modern summary {
-      list-style: none;
-      cursor: pointer;
-      padding: .5rem 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #1565c0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    details.accordion-modern summary::-webkit-details-marker {
-      display: none;
-    }
-    details.accordion-modern summary::after {
-      content: '+';
-      font-size: 1.2rem;
-      transition: transform .2s ease;
-    }
-    details.accordion-modern[open] summary::after {
-      content: '-';
-      transform: rotate(180deg);
-    }
-    details.accordion-modern .accordion-content {
-      padding-left: 1rem;
-      margin-top: .5rem;
-    }
-    details.accordion-modern .accordion-content label {
-      display: block;
-      margin-bottom: .5rem;
-    }
+        .filtros-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0;
+        }
 
-    /* BOTÓN APLICAR FILTROS */
-    #aplicar-filtros {
-      width: 100%;
-      margin-top: 16px;
-    }
+        .contador-filtros {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
 
-    /* GRID DE CARDS */
-    .catalogo-campus-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .col-card {
-      flex: 1 1 calc(33.333% - 20px);
-      max-width: calc(33.333% - 20px);
-    }
-    @media (max-width: 768px) {
-      .col-card {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
-      }
-    }
-    @media (max-width: 500px) {
-      .col-card {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-    }
+        .filtros-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
 
-    /* TARJETA */
-    .icontec-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .icontec-card {
-      position: relative;
-      overflow: hidden;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform .3s, box-shadow .3s, border-bottom .3s;
-    }
-    .icontec-card-link:hover .icontec-card {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-      border-bottom: 3px solid #1ec773;
-    }
+        .filtros-content {
+            padding: 1.5rem;
+        }
 
-    /* IMAGEN */
-    .icontec-card-img-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
-    .icontec-card-img {
-      width: 100%;
-      display: block;
-      border-radius: 8px 8px 0 0;
-      transition: filter .3s, transform .3s;
-    }
-    .icontec-card-link:hover .icontec-card-img {
-      filter: brightness(0.5) grayscale(10%);
-      transform: scale(1.05);
-    }
+        /* ACORDEÓN MODERNO */
+        .accordion-modern {
+            margin-bottom: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-    /* OVERLAY */
-    .icontec-card-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 2;
-      clip-path: circle(0% at 50% 0);
-      transition:
-        clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94),
-        opacity .3s ease .1s;
-    }
-    .icontec-card-link:hover .icontec-card-overlay {
-      opacity: 1;
-      pointer-events: auto;
-      clip-path: circle(120% at 50% 0);
-    }
-    .icontec-card-overlay-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      text-align: center;
-    }
+        .accordion-modern summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
 
-    /* BURBUJA TIPO */
-    .icontec-card-category {
-      position: absolute;
-      top: 8px; left: 8px;
-      background: linear-gradient(135deg, #1ec773, #0fa958);
-      color: #fff;
-      padding: 4px 8px;
-      font-size: .75rem;
-      font-weight: 600;
-      border-radius: 12px;
-      text-transform: uppercase;
-      box-shadow: 0 2px 8px rgba(30,199,115,0.3);
-      z-index: 3;
-    }
+        .accordion-modern summary:hover {
+            background: #e9ecef;
+        }
 
-    /* CONTENIDO */
-    .icontec-card-content {
-      padding: 1rem;
-      text-align: left;
-      background-color: #cce5ff;
-    }
-    .info-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-    .tag-modalidad, .tag-gratis {
-      font-size: .75rem;
-      font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 12px;
-      color: #fff;
-    }
-    .tag-modalidad { background: #1565c0; }
-    .tag-gratis   { background: #FF4841; }
+        .accordion-modern summary::-webkit-details-marker {
+            display: none;
+        }
 
-    .icontec-card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #222;
-    }
-    .icontec-card-content p {
-      margin: 4px 0;
-      font-size: .9rem;
-      color: #333;
-    }
+        .accordion-modern summary::after {
+            content: '+';
+            font-size: 1.25rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
 
-    /* BOTÓN COMPACTO */
-    .filter-course-card--buttons {
-      margin-top: 12px;
-      text-align: center;
-    }
-    .btn-compact {
-      background: #1ec773;
-      color: #fff;
-      padding: 6px 12px;
-      font-size: .85rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: background .2s, transform .2s;
-    }
-    .btn-compact:hover {
-      background: #0fa958;
-      transform: scale(1.05);
-    }
-  </style>
+        .accordion-modern[open] summary::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .accordion-modern[open] summary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .accordion-content {
+            padding: 1rem 1.25rem;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* OPCIONES DE FILTRO */
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .filter-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: 0.75rem;
+            transform: scale(1.1);
+        }
+
+        /* FILTRO DE FECHA */
+        .filtro-fecha {
+            margin: 1.5rem 0;
+        }
+
+        .filtro-fecha-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .fechas-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .fecha-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fecha-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            color: #6c757d;
+        }
+
+        /* FILTRO DE BÚSQUEDA */
+        .filtro-busqueda {
+            margin: 1.5rem 0;
+        }
+
+        .filtro-busqueda .input-group {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .filtro-busqueda .form-control {
+            border: 1px solid #e9ecef;
+            border-right: none;
+        }
+
+        .filtro-busqueda .input-group-text {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-left: none;
+        }
+
+        /* BOTONES CON GRADIENTE */
+        .btn-gradient {
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(21, 101, 192, 0.3);
+            color: white;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gradient:hover::before {
+            left: 100%;
+        }
+
+        /* ACCIONES DE FILTROS */
+        .filtros-actions {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e9ecef;
+        }
+
+        /* GRID DE CARDS - 3 COLUMNAS */
+        .catalogo-campus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .col-card {
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .col-card.hidden {
+            display: none !important;
+        }
+
+        /* ESTILOS DE LAS CARDS MEJORADAS */
+        .icontec-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+
+        .icontec-card {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform .3s, box-shadow .3s, border-bottom .3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .icontec-card-link:hover .icontec-card {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            border-bottom: 3px solid var(--primary-green);
+        }
+
+        .icontec-card-img-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .icontec-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px 12px 0 0;
+            transition: filter .3s, transform .3s;
+        }
+
+        .icontec-card-link:hover .icontec-card-img {
+            filter: brightness(0.7) grayscale(10%);
+            transform: scale(1.05);
+        }
+
+        .icontec-card-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            clip-path: circle(0% at 50% 0);
+            transition: clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94), opacity .3s ease .1s;
+        }
+
+        .icontec-card-link:hover .icontec-card-overlay {
+            opacity: 1;
+            pointer-events: auto;
+            clip-path: circle(120% at 50% 0);
+        }
+
+        .icontec-card-overlay-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .icontec-card-category {
+            position: absolute;
+            top: 12px; left: 12px;
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 6px 12px;
+            font-size: .75rem;
+            font-weight: 600;
+            border-radius: 15px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(30,199,115,0.3);
+            z-index: 3;
+        }
+
+        .icontec-card-content {
+            padding: 1.5rem;
+            text-align: left;
+            background-color: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag-modalidad, .tag-gratis {
+            font-size: .75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            color: #fff;
+        }
+
+        .tag-modalidad { 
+            background: var(--primary-blue); 
+        }
+
+        .tag-gratis { 
+            background: #FF4841; 
+        }
+
+        /* TÍTULO MEJORADO - EVITA DESBORDAMIENTO */
+        .icontec-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 2.6em;
+        }
+
+        .icontec-card-content p {
+            margin: 6px 0;
+            font-size: .9rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .filter-course-card--buttons {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .btn-compact {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: .9rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+        .btn-compact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+        }
+
+        /* PAGINACIÓN */
+        .catalogo-pagination {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+
+        .pagination-info {
+            font-weight: 500;
+        }
+
+        .pagination-nav .page-numbers {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 0.5rem;
+        }
+
+        .pagination-nav .page-numbers li {
+            margin: 0;
+        }
+
+        .pagination-nav .page-numbers a,
+        .pagination-nav .page-numbers span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 45px;
+        }
+
+        .pagination-nav .page-numbers a:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination-nav .page-numbers .current {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination-nav .page-numbers .prev,
+        .pagination-nav .page-numbers .next {
+            font-weight: 600;
+        }
+
+        /* ESTADO VACÍO */
+        .tienda-educacion-empty {
+            grid-column: 1 / -1;
+            padding: 3rem;
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        /* OVERLAY PARA MÓVIL */
+        .filtros-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+        }
+
+        .filtros-overlay.show {
+            display: block;
+        }
+
+        /* BOTÓN FILTROS TOGGLE */
+        .filters-toggle {
+            display: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .filters-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .catalogo-campus-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .catalogo-campus-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .filtros-sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 90%;
+                max-width: 400px;
+                height: 100vh;
+                z-index: 1050;
+                transition: left 0.3s ease;
+                border-radius: 0;
+            }
+            
+            .filtros-sidebar.show {
+                left: 0;
+            }
+            
+            .filtros-close {
+                display: flex;
+            }
+            
+            .filters-toggle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .catalogo-title {
+                font-size: 2rem;
+            }
+
+            .catalogo-campus-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fechas-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .catalogo-educacion-container {
+                padding: 1rem;
+            }
+            
+            .catalogo-campus-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .catalogo-header {
+                padding: 1.5rem;
+            }
+            
+            .catalogo-title {
+                font-size: 1.75rem;
+            }
+
+            .pagination-nav .page-numbers {
+                flex-wrap: wrap;
+            }
+
+            .pagination-info {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .catalogo-title {
+                font-size: 1.5rem;
+            }
+            
+            .filtros-sidebar {
+                width: 100%;
+            }
+
+            .catalogo-campus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .catalogo-pagination .row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .pagination-info {
+                text-align: center;
+            }
+            
+            .icontec-card-title {
+                font-size: 1rem;
+                -webkit-line-clamp: 3;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <h1>Catálogo de Educación</h1>
-  <button class="filters-toggle">☰ Filtros</button>
+    <div class="catalogo-educacion-container">
+        <div class="container py-4">
+            <!-- Header del Catálogo -->
+            <div class="catalogo-header mb-4">
+                <h1 class="catalogo-title text-center mb-3">
+                    Cursos Disponibles
+                </h1>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <!-- El contador ahora está en el sidebar -->
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <button class="filters-toggle btn btn-gradient" aria-expanded="false" aria-controls="filtros-sidebar">
+                            <i class="bi bi-funnel"></i> Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-  <div class="catalogo-campus-container">
-    <!-- SIDEBAR -->
-    <aside class="filtros-sidebar">
-      <details class="accordion-modern">
-        <summary>Tipo de curso</summary>
-        <div class="accordion-content">
-          <label><input type="checkbox" value="Curso"> Curso</label>
-          <label><input type="checkbox" value="Diplomado"> Diplomado</label>
-          <label><input type="checkbox" value="Programa"> Programa</label>
+            <div class="catalogo-campus-container">
+                <!-- SIDEBAR DE FILTROS -->
+                <aside id="filtros-sidebar" class="filtros-sidebar" aria-hidden="true">
+                    <div class="filtros-header">
+                        <div>
+                            <h3 class="filtros-title">Filtros</h3>
+                            <div id="contador-filtros" class="contador-filtros">
+                                4 cursos encontrados
+                            </div>
+                        </div>
+                        <button class="filtros-close" aria-label="Cerrar filtros">×</button>
+                    </div>
+
+                    <div class="filtros-content">
+                        <!-- NUEVO ORDEN DE FILTROS -->
+                        
+                        <!-- 1. Palabras clave -->
+                        <div class="filtro-busqueda">
+                            <label class="filtro-fecha-label">Palabras clave:</label>
+                            <div class="input-group">
+                                <input type="text" id="filter-keyword" class="form-control" placeholder="Ej: gestión, calidad...">
+                                <span class="input-group-text">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Modalidad -->
+                        <details class="accordion-modern" open>
+                            <summary>Modalidad</summary>
+                            <div class="accordion-content">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-modalidad" value="Virtual">
+                                    <span class="checkmark"></span>
+                                    Virtual
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-modalidad" value="Presencial">
+                                    <span class="checkmark"></span>
+                                    Presencial
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-modalidad" value="Híbrido">
+                                    <span class="checkmark"></span>
+                                    Híbrido
+                                </label>
+                            </div>
+                        </details>
+
+                        <!-- 3. Tema -->
+                        <details class="accordion-modern">
+                            <summary>Tema</summary>
+                            <div class="accordion-content">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-tema" value="Gestión de la calidad">
+                                    <span class="checkmark"></span>
+                                    Gestión de la calidad
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-tema" value="Herramientas para la mejora">
+                                    <span class="checkmark"></span>
+                                    Herramientas para la mejora
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-tema" value="Sistemas Integrados">
+                                    <span class="checkmark"></span>
+                                    Sistemas Integrados
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-tema" value="Desarrollo sostenible">
+                                    <span class="checkmark"></span>
+                                    Desarrollo sostenible
+                                </label>
+                            </div>
+                        </details>
+
+                        <!-- 4. Sector -->
+                        <details class="accordion-modern">
+                            <summary>Sector</summary>
+                            <div class="accordion-content">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-sector" value="Educación">
+                                    <span class="checkmark"></span>
+                                    Educación
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-sector" value="Industrial">
+                                    <span class="checkmark"></span>
+                                    Industrial
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-sector" value="Salud">
+                                    <span class="checkmark"></span>
+                                    Salud
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-sector" value="Logística">
+                                    <span class="checkmark"></span>
+                                    Logística
+                                </label>
+                            </div>
+                        </details>
+
+                        <!-- 5. Perfil -->
+                        <details class="accordion-modern">
+                            <summary>Perfil</summary>
+                            <div class="accordion-content">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-perfil" value="Profesional">
+                                    <span class="checkmark"></span>
+                                    Profesional
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-perfil" value="Gerente/Director">
+                                    <span class="checkmark"></span>
+                                    Gerente/Director
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-perfil" value="Auditor">
+                                    <span class="checkmark"></span>
+                                    Auditor
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-perfil" value="Estudiante">
+                                    <span class="checkmark"></span>
+                                    Estudiante
+                                </label>
+                            </div>
+                        </details>
+
+                        <!-- 6. Gratis -->
+                        <details class="accordion-modern">
+                            <summary>Curso Gratuito</summary>
+                            <div class="accordion-content">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-gratis" value="1">
+                                    <span class="checkmark"></span>
+                                    Sí
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="filter-gratis" value="0">
+                                    <span class="checkmark"></span>
+                                    No
+                                </label>
+                            </div>
+                        </details>
+
+                        <!-- 7. Fechas: Desde y Hasta -->
+                        <div class="filtro-fecha">
+                            <label class="filtro-fecha-label">Rango de fechas:</label>
+                            <div class="fechas-container">
+                                <div class="fecha-group">
+                                    <label for="filter-fecha-desde">Desde</label>
+                                    <input id="filter-fecha-desde" name="filter-fecha-desde" type="date" class="form-control">
+                                </div>
+                                <br>
+                                <div class="fecha-group">
+                                    <label for="filter-fecha-hasta">Hasta</label>
+                                    <input id="filter-fecha-hasta" name="filter-fecha-hasta" type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8. Limpiar Filtros -->
+                        <div class="filtros-actions">
+                            <button id="limpiar-filtros" class="btn btn-gradient w-100" type="button">
+                                <i class="bi bi-arrow-clockwise"></i> Limpiar Filtros
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- CONTENIDO PRINCIPAL -->
+                <div class="catalogo-main-content">
+                    <!-- GRID DE CARDS - 3 COLUMNAS -->
+                    <section id="tienda-educacion-catalogo" class="catalogo-campus-grid">
+                        <!-- CARD 1 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Virtual" data-gratis="1" data-fecha="2024-03-01" data-sector="Educación" data-tema="Gestión de la calidad" data-perfil="Profesional">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg" alt="Normatividad Técnica"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Normatividad Técnica y Gestión de Calidad Avanzada para Profesionales</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Virtual</span>
+                                            <span class="tag-gratis">+ Curso Gratis</span>
+                                        </div>
+                                        <div class="icontec-card-title">Normatividad Técnica y Gestión de Calidad Avanzada para Profesionales</div>
+                                        <p><strong>Inicio:</strong> 01 Marzo 2024</p>
+                                        <p><strong>Duración:</strong> 4 semanas</p>
+                                        <p><strong>Horario:</strong> Lun-Vie, 6:00 p.m. – 8:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- CARD 2 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Presencial" data-gratis="0" data-fecha="2024-03-15" data-sector="Industrial" data-tema="Herramientas para la mejora" data-perfil="Gerente/Director">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg" alt="Gestión de Calidad"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Gestión de Calidad Avanzada</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Presencial</span>
+                                        </div>
+                                        <div class="icontec-card-title">Gestión de Calidad Avanzada y Mejora Continua para Directivos</div>
+                                        <p><strong>Inicio:</strong> 15 Marzo 2024</p>
+                                        <p><strong>Duración:</strong> 6 semanas</p>
+                                        <p><strong>Horario:</strong> Mar-Sáb, 9:00 a.m. – 1:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- CARD 3 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Híbrido" data-gratis="0" data-fecha="2024-04-01" data-sector="Salud" data-tema="Sistemas Integrados" data-perfil="Auditor">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg" alt="Gestión Documental"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Sistemas de Gestión Documental</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Híbrido</span>
+                                        </div>
+                                        <div class="icontec-card-title">Sistemas de Gestión Documental y Control de Procesos para Auditores</div>
+                                        <p><strong>Inicio:</strong> 01 Abril 2024</p>
+                                        <p><strong>Duración:</strong> 8 semanas</p>
+                                        <p><strong>Horario:</strong> Mié-Dom, 2:00 p.m. – 6:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- CARD 4 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Virtual" data-gratis="1" data-fecha="2024-02-20" data-sector="Logística" data-tema="Desarrollo sostenible" data-perfil="Estudiante">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg" alt="Auditoría Interna"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Desarrollo Sostenible y Gestión Ambiental</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Virtual</span>
+                                            <span class="tag-gratis">+ Curso Gratis</span>
+                                        </div>
+                                        <div class="icontec-card-title">Desarrollo Sostenible y Gestión Ambiental para Estudiantes Universitarios</div>
+                                        <p><strong>Inicio:</strong> 20 Febrero 2024</p>
+                                        <p><strong>Duración:</strong> 5 semanas</p>
+                                        <p><strong>Horario:</strong> Lun-Vie, 5:00 p.m. – 7:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- CARD 5 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Virtual" data-gratis="0" data-fecha="2024-03-10" data-sector="Educación" data-tema="Gestión de la calidad" data-perfil="Profesional">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg" alt="Calidad Educativa"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Gestión de Calidad en Instituciones Educativas</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Virtual</span>
+                                        </div>
+                                        <div class="icontec-card-title">Gestión de Calidad en Instituciones Educativas y Acreditación Académica</div>
+                                        <p><strong>Inicio:</strong> 10 Marzo 2024</p>
+                                        <p><strong>Duración:</strong> 7 semanas</p>
+                                        <p><strong>Horario:</strong> Lun-Vie, 7:00 p.m. – 9:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- CARD 6 -->
+                        <div class="col-card" data-tipo="Curso" data-modalidad="Presencial" data-gratis="1" data-fecha="2024-04-15" data-sector="Industrial" data-tema="Herramientas para la mejora" data-perfil="Gerente/Director">
+                            <a href="#" class="icontec-card-link">
+                                <div class="icontec-card">
+                                    <div class="icontec-card-img-container">
+                                        <img class="icontec-card-img" src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg" alt="Mejora Continua"/>
+                                        <div class="icontec-card-overlay">
+                                            <span class="icontec-card-overlay-title">Herramientas para la Mejora Continua</span>
+                                        </div>
+                                    </div>
+                                    <div class="icontec-card-category">Curso</div>
+                                    <div class="icontec-card-content">
+                                        <div class="info-tags">
+                                            <span class="tag-modalidad">Presencial</span>
+                                            <span class="tag-gratis">+ Curso Gratis</span>
+                                        </div>
+                                        <div class="icontec-card-title">Herramientas para la Mejora Continua y Optimización de Procesos Industriales</div>
+                                        <p><strong>Inicio:</strong> 15 Abril 2024</p>
+                                        <p><strong>Duración:</strong> 6 semanas</p>
+                                        <p><strong>Horario:</strong> Mar-Jue, 8:00 a.m. – 12:00 p.m.</p>
+                                        <div class="filter-course-card--buttons">
+                                            <button class="btn-compact">
+                                                <i class="bi bi-cart3"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- PAGINACIÓN -->
+                    <nav class="catalogo-pagination" aria-label="Paginación">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <p class="pagination-info mb-0 text-muted">
+                                    Página 1 de 2
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pagination-nav">
+                                    <ul class="page-numbers">
+                                        <li><span class="current">1</span></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a class="next" href="#">Siguiente <i class="bi bi-chevron-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </details>
-      <details class="accordion-modern">
-        <summary>Modalidad</summary>
-        <div class="accordion-content">
-          <label><input type="checkbox" value="Virtual"> Virtual</label>
-          <label><input type="checkbox" value="Presencial"> Presencial</label>
-          <label><input type="checkbox" value="Híbrida"> Híbrida</label>
-          <label><input type="checkbox" value="En línea"> En línea</label>
-        </div>
-      </details>
-      <button id="aplicar-filtros" class="btn btn-success">
-        <i class="bi bi-funnel-fill"></i> Aplicar filtros
-      </button>
-    </aside>
+    </div>
 
-    <!-- GRID DE 4 CARDS -->
-    <section class="catalogo-campus-grid">
-      <!-- CARD 1 -->
-      <div class="col-card" data-tipo="Curso" data-modalidad="Virtual">
-        <a href="detalle-curso.html" class="icontec-card-link">
-          <div class="icontec-card">
-            <div class="icontec-card-img-container">
-              <img class="icontec-card-img"
-                   src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg"
-                   alt="Normatividad Técnica"/>
-              <div class="icontec-card-overlay">
-                <span class="icontec-card-overlay-title">Normatividad Técnica</span>
-              </div>
-            </div>
-            <div class="icontec-card-category">Curso</div>
-            <div class="icontec-card-content">
-              <div class="info-tags">
-                <span class="tag-modalidad">Virtual</span>
-                <span class="tag-gratis">+ Curso Gratis</span>
-              </div>
-              <div class="icontec-card-title">Normatividad Técnica</div>
-              <p>Inicio: 10 octubre</p>
-              <p>Duración: 4 semanas</p>
-              <p>Horario: Lun-Vie, 6:00 p.m. – 8:00 p.m.</p>
-              <div class="filter-course-card--buttons">
-                <button class="btn-compact">
-                  <i class="bi bi-cart3"></i> Agregar
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+    <!-- OVERLAY PARA MÓVIL -->
+    <div class="filtros-overlay"></div>
 
-      <!-- CARD 2 -->
-      <div class="col-card" data-tipo="Curso" data-modalidad="Presencial">
-        <a href="detalle-curso.html" class="icontec-card-link">
-          <div class="icontec-card">
-            <div class="icontec-card-img-container">
-              <img class="icontec-card-img"
-                   src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
-                   alt="Gestión de Calidad"/>
-              <div class="icontec-card-overlay">
-                <span class="icontec-card-overlay-title">Gestión de Calidad</span>
-              </div>
-            </div>
-            <div class="icontec-card-category">Curso</div>
-            <div class="icontec-card-content">
-              <div class="info-tags">
-                <span class="tag-modalidad">Presencial</span>
-              </div>
-              <div class="icontec-card-title">Gestión de Calidad</div>
-              <p>Inicio: 15 octubre</p>
-              <p>Duración: 6 semanas</p>
-              <p>Horario: Mar-Sáb, 9:00 a.m. – 1:00 p.m.</p>
-              <div class="filter-course-card--buttons">
-                <button class="btn-compact">
-                  <i class="bi bi-cart3"></i> Agregar
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript del Catálogo -->
+    <script>
+        class CatalogoEducacion {
+            constructor() {
+                this.filters = {
+                    modalidad: [],
+                    sector: [],
+                    perfil: [],
+                    tema: [],
+                    gratis: [],
+                    fecha_desde: '',
+                    fecha_hasta: '',
+                    keyword: ''
+                };
+                this.init();
+            }
 
-      <!-- CARD 3 -->
-      <div class="col-card" data-tipo="Programa" data-modalidad="Híbrida">
-        <a href="detalle-curso.html" class="icontec-card-link">
-          <div class="icontec-card">
-            <div class="icontec-card-img-container">
-              <img class="icontec-card-img"
-                   src="https://campus.icontecvirtual.edu.co/uploads/courses/599896.jpg"
-                   alt="Gestión Documental"/>
-              <div class="icontec-card-overlay">
-                <span class="icontec-card-overlay-title">Gestión Documental</span>
-              </div>
-            </div>
-            <div class="icontec-card-category">Programa</div>
-            <div class="icontec-card-content">
-              <div class="info-tags">
-                <span class="tag-modalidad">Híbrida</span>
-              </div>
-              <div class="icontec-card-title">Gestión Documental</div>
-              <p>Inicio: 01 noviembre</p>
-              <p>Duración: 10 semanas</p>
-              <p>Horario: Mié-Dom, 2:00 p.m. – 6:00 p.m.</p>
-              <div class="filter-course-card--buttons">
-                <button class="btn-compact">
-                  <i class="bi bi-cart3"></i> Agregar
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+            init() {
+                this.bindEvents();
+                this.applyFilters();
+            }
 
-      <!-- CARD 4 -->
-      <div class="col-card" data-tipo="Diplomado" data-modalidad="Virtual">
-        <a href="detalle-curso.html" class="icontec-card-link">
-          <div class="icontec-card">
-            <div class="icontec-card-img-container">
-              <img class="icontec-card-img"
-                   src="https://campus.icontecvirtual.edu.co/uploads/courses/636982.jpg"
-                   alt="Auditoría Interna"/>
-              <div class="icontec-card-overlay">
-                <span class="icontec-card-overlay-title">Auditoría Interna</span>
-              </div>
-            </div>
-            <div class="icontec-card-category">Diplomado</div>
-            <div class="icontec-card-content">
-              <div class="info-tags">
-                <span class="tag-modalidad">Virtual</span>
-              </div>
-              <div class="icontec-card-title">Auditoría Interna</div>
-              <p>Inicio: 22 octubre</p>
-              <p>Duración: 8 semanas</p>
-              <p>Horario: Lun-Vie, 5:00 p.m. – 7:00 p.m.</p>
-              <div class="filter-course-card--buttons">
-                <button class="btn-compact">
-                  <i class="bi bi-cart3"></i> Agregar
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+            bindEvents() {
+                document.querySelector('.filters-toggle')?.addEventListener('click', () => this.toggleFilters());
+                document.querySelector('.filtros-close')?.addEventListener('click', () => this.toggleFilters());
+                document.querySelector('.filtros-overlay')?.addEventListener('click', () => this.toggleFilters());
 
-    </section>
-  </div>
+                document.querySelectorAll('input[name^="filter-"]').forEach(input => {
+                    if (input.type === 'checkbox') {
+                        input.addEventListener('change', () => this.handleFilterChange());
+                    }
+                });
 
-  <script>
-    // Toggle filtros en móvil
-    document.querySelector('.filters-toggle')
-      .addEventListener('click', () => {
-        document.querySelector('.filtros-sidebar').classList.toggle('show');
-      });
+                document.getElementById('filter-fecha-desde')?.addEventListener('change', (e) => {
+                    this.filters.fecha_desde = e.target.value;
+                    this.handleFilterChange();
+                });
 
-    // Función Aplicar filtros
-    document.getElementById('aplicar-filtros')
-      .addEventListener('click', () => {
-        const detalles = document.querySelectorAll('details.accordion-modern');
-        const tipos = Array.from(
-          detalles[0].querySelectorAll('input[type="checkbox"]:checked')
-        ).map(c => c.value);
-        const modals = Array.from(
-          detalles[1].querySelectorAll('input[type="checkbox"]:checked')
-        ).map(c => c.value);
+                document.getElementById('filter-fecha-hasta')?.addEventListener('change', (e) => {
+                    this.filters.fecha_hasta = e.target.value;
+                    this.handleFilterChange();
+                });
 
-        document.querySelectorAll('.col-card').forEach(card => {
-          const tipo = card.getAttribute('data-tipo');
-          const modal = card.getAttribute('data-modalidad');
-          let visible = true;
-          if (tipos.length && !tipos.includes(tipo)) visible = false;
-          if (modals.length && !modals.includes(modal)) visible = false;
-          card.style.display = visible ? '' : 'none';
+                document.getElementById('filter-keyword')?.addEventListener('input', (e) => {
+                    this.filters.keyword = e.target.value.toLowerCase().trim();
+                    this.handleFilterChange();
+                });
+
+                document.getElementById('limpiar-filtros')?.addEventListener('click', () => this.clearFilters());
+            }
+
+            toggleFilters() {
+                const sidebar = document.getElementById('filtros-sidebar');
+                const overlay = document.querySelector('.filtros-overlay');
+                const toggleBtn = document.querySelector('.filters-toggle');
+                
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
+
+                const isExpanded = sidebar.classList.contains('show');
+                toggleBtn?.setAttribute('aria-expanded', isExpanded);
+                sidebar.setAttribute('aria-hidden', !isExpanded);
+            }
+
+            handleFilterChange() {
+                this.updateFilters();
+                this.applyFilters();
+            }
+
+            updateFilters() {
+                this.filters.modalidad = [];
+                this.filters.sector = [];
+                this.filters.perfil = [];
+                this.filters.tema = [];
+                this.filters.gratis = [];
+
+                document.querySelectorAll('input[name^="filter-"]:checked').forEach(input => {
+                    const filterType = input.name.replace('filter-', '');
+                    if (this.filters.hasOwnProperty(filterType)) {
+                        this.filters[filterType].push(input.value);
+                    }
+                });
+
+                this.filters.fecha_desde = document.getElementById('filter-fecha-desde')?.value || '';
+                this.filters.fecha_hasta = document.getElementById('filter-fecha-hasta')?.value || '';
+                this.filters.keyword = document.getElementById('filter-keyword')?.value.toLowerCase().trim() || '';
+            }
+
+            applyFilters() {
+                const cards = document.querySelectorAll('.col-card');
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const shouldShow = this.shouldShowCard(card);
+                    
+                    if (shouldShow) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                this.updateCounter(visibleCount);
+                this.showEmptyState(visibleCount === 0);
+            }
+
+            shouldShowCard(card) {
+                const cardData = {
+                    modalidad: card.getAttribute('data-modalidad'),
+                    sector: card.getAttribute('data-sector'),
+                    perfil: card.getAttribute('data-perfil'),
+                    tema: card.getAttribute('data-tema'),
+                    gratis: card.getAttribute('data-gratis'),
+                    fecha: card.getAttribute('data-fecha'),
+                    titulo: card.querySelector('.icontec-card-title')?.textContent?.toLowerCase() || '',
+                    descripcion: card.querySelector('.icontec-card-content')?.textContent?.toLowerCase() || ''
+                };
+
+                const arrayFilters = ['modalidad', 'sector', 'perfil', 'tema', 'gratis'];
+                for (const filterType of arrayFilters) {
+                    if (this.filters[filterType].length > 0) {
+                        if (!this.filters[filterType].includes(cardData[filterType])) {
+                            return false;
+                        }
+                    }
+                }
+
+                if (this.filters.fecha_desde && cardData.fecha) {
+                    const filterDateDesde = new Date(this.filters.fecha_desde);
+                    const cardDate = new Date(cardData.fecha);
+                    if (cardDate < filterDateDesde) {
+                        return false;
+                    }
+                }
+
+                if (this.filters.fecha_hasta && cardData.fecha) {
+                    const filterDateHasta = new Date(this.filters.fecha_hasta);
+                    const cardDate = new Date(cardData.fecha);
+                    filterDateHasta.setDate(filterDateHasta.getDate() + 1);
+                    if (cardDate >= filterDateHasta) {
+                        return false;
+                    }
+                }
+
+                if (this.filters.keyword) {
+                    const searchText = this.filters.keyword;
+                    const inTitle = cardData.titulo.includes(searchText);
+                    const inDescription = cardData.descripcion.includes(searchText);
+                    
+                    if (!inTitle && !inDescription) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            updateCounter(count) {
+                const counter = document.getElementById('contador-filtros');
+                const totalCards = document.querySelectorAll('.col-card').length;
+                
+                if (counter) {
+                    const tipo = document.querySelector('.catalogo-title')?.textContent?.toLowerCase() || 'cursos';
+                    if (count === totalCards) {
+                        counter.textContent = `${count} ${tipo} encontrados`;
+                    } else {
+                        counter.textContent = `${count} ${tipo} encontrados (filtrados)`;
+                    }
+                }
+            }
+
+            showEmptyState(show) {
+                let emptyState = document.querySelector('.tienda-educacion-empty');
+                
+                if (show && !emptyState) {
+                    emptyState = document.createElement('div');
+                    emptyState.className = 'tienda-educacion-empty alert alert-warning text-center';
+                    emptyState.innerHTML = `
+                        <i class="bi bi-search display-4 mb-3"></i>
+                        <h4>No se encontraron resultados</h4>
+                        <p class="mb-0">Intenta ajustar los filtros o usar otros términos de búsqueda.</p>
+                    `;
+                    document.querySelector('.catalogo-campus-grid')?.appendChild(emptyState);
+                } else if (!show && emptyState) {
+                    emptyState.remove();
+                }
+            }
+
+            clearFilters() {
+                document.querySelectorAll('input[name^="filter-"]').forEach(input => {
+                    input.checked = false;
+                });
+
+                const fechaDesdeInput = document.getElementById('filter-fecha-desde');
+                const fechaHastaInput = document.getElementById('filter-fecha-hasta');
+                const keywordInput = document.getElementById('filter-keyword');
+                
+                if (fechaDesdeInput) fechaDesdeInput.value = '';
+                if (fechaHastaInput) fechaHastaInput.value = '';
+                if (keywordInput) keywordInput.value = '';
+
+                this.filters = {
+                    modalidad: [],
+                    sector: [],
+                    perfil: [],
+                    tema: [],
+                    gratis: [],
+                    fecha_desde: '',
+                    fecha_hasta: '',
+                    keyword: ''
+                };
+
+                this.applyFilters();
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            new CatalogoEducacion();
         });
-      });
-  </script>
+    </script>
 </body>
 </html>

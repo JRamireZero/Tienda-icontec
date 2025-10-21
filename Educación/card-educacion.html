@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Catálogo de Educación</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"/>
+
+  <!-- Google Fonts - Catamaran -->
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Catamaran', sans-serif;
+      background: #f5f5f5;
+      color: #4d5974;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    /* GRID DE CARDS */
+    .catalogo-campus-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .col-card {
+      flex: 1 1 calc(33.333% - 20px);
+      max-width: calc(33.333% - 20px);
+    }
+    @media (max-width: 768px) {
+      .col-card {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+      }
+    }
+    @media (max-width: 500px) {
+      .col-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* TARJETA */
+    .icontec-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .icontec-card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform .3s, box-shadow .3s, border-bottom .3s;
+      height: 100%;
+    }
+    .icontec-card-link:hover .icontec-card {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      border-bottom: 3px solid #1ec773;
+    }
+
+    /* IMAGEN */
+    .icontec-card-img-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 200px;
+    }
+    .icontec-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px 8px 0 0;
+      transition: filter .3s, transform .3s;
+    }
+    .icontec-card-link:hover .icontec-card-img {
+      filter: brightness(0.5) grayscale(10%);
+      transform: scale(1.05);
+    }
+
+    /* OVERLAY */
+    .icontec-card-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+      clip-path: circle(0% at 50% 0);
+      transition:
+        clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94),
+        opacity .3s ease .1s;
+    }
+    .icontec-card-link:hover .icontec-card-overlay {
+      opacity: 1;
+      pointer-events: auto;
+      clip-path: circle(120% at 50% 0);
+    }
+    .icontec-card-overlay-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 0 15px;
+    }
+
+    /* BURBUJA TIPO */
+    .icontec-card-category {
+      position: absolute;
+      top: 8px; left: 8px;
+      background: linear-gradient(135deg, #1ec773, #0fa958);
+      color: #fff;
+      padding: 4px 12px;
+      font-size: .75rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(30,199,115,0.3);
+      z-index: 3;
+    }
+
+    /* CONTENIDO */
+    .icontec-card-content {
+      padding: 1.25rem;
+      text-align: left;
+      background-color: #fff;
+    }
+    .info-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .tag-modalidad, .tag-gratis {
+      font-size: .75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 12px;
+      color: #fff;
+    }
+    .tag-modalidad { 
+      background: #1565c0; 
+      font-family: 'Catamaran', sans-serif;
+    }
+    .tag-gratis   { 
+      background: #FF4841; 
+      font-family: 'Catamaran', sans-serif;
+    }
+
+    .icontec-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #222;
+      line-height: 1.3;
+    }
+    .icontec-card-content p {
+      margin: 6px 0;
+      font-size: .9rem;
+      color: #666;
+      font-weight: 400;
+    }
+
+    /* BOTÓN COMPACTO */
+    .filter-course-card--buttons {
+      margin-top: 16px;
+      text-align: center;
+    }
+    .btn-compact {
+      background: #1ec773;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: .9rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .2s, transform .2s;
+      font-family: 'Catamaran', sans-serif;
+    }
+    .btn-compact:hover {
+      background: #0fa958;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Card de Educación</h1>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <a href="#" class="icontec-card-link">
+          <div class="icontec-card">
+            <div class="icontec-card-img-container">
+              <img class="icontec-card-img"
+                   src="https://campus.icontecvirtual.edu.co/uploads/courses/439382.jpg"
+                   alt="Normatividad Técnica"/>
+              <div class="icontec-card-overlay">
+                <span class="icontec-card-overlay-title">Normatividad Técnica</span>
+              </div>
+            </div>
+            <div class="icontec-card-category">Curso</div>
+            <div class="icontec-card-content">
+              <div class="info-tags">
+                <span class="tag-modalidad">Virtual</span>
+                <span class="tag-gratis">+ Curso Gratis</span>
+              </div>
+              <div class="icontec-card-title">Normatividad Técnica</div>
+              <p><strong>Inicio:</strong> 10 octubre</p>
+              <p><strong>Duración:</strong> 4 semanas</p>
+              <p><strong>Horario:</strong> Lun-Vie, 6:00 p.m. – 8:00 p.m.</p>
+              <div class="filter-course-card--buttons">
+                <button class="btn-compact">
+                  <i class="bi bi-cart3"></i> Agregar
+                </button>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
