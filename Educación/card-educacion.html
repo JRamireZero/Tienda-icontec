@@ -15,6 +15,9 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     rel="stylesheet"/>
 
+  <!-- Google Fonts - Catamaran -->
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* RESET */
     *, *::before, *::after {
@@ -24,7 +27,7 @@
     }
 
     body {
-      font-family: 'Hind', sans-serif;
+      font-family: 'Catamaran', sans-serif;
       background: #f5f5f5;
       color: #4d5974;
       padding: 20px;
@@ -34,7 +37,10 @@
       text-align: center;
       margin-bottom: 30px;
       color: #333;
-    }/* GRID DE CARDS */
+      font-weight: 700;
+    }
+
+    /* GRID DE CARDS */
     .catalogo-campus-grid {
       display: flex;
       flex-wrap: wrap;
@@ -70,6 +76,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: transform .3s, box-shadow .3s, border-bottom .3s;
+      height: 100%;
     }
     .icontec-card-link:hover .icontec-card {
       transform: translateY(-12px) scale(1.03);
@@ -82,9 +89,12 @@
       position: relative;
       width: 100%;
       overflow: hidden;
+      height: 200px;
     }
     .icontec-card-img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
       border-radius: 8px 8px 0 0;
       transition: filter .3s, transform .3s;
@@ -121,6 +131,7 @@
       font-size: 1.15rem;
       font-weight: 700;
       text-align: center;
+      padding: 0 15px;
     }
 
     /* BURBUJA TIPO */
@@ -129,7 +140,7 @@
       top: 8px; left: 8px;
       background: linear-gradient(135deg, #1ec773, #0fa958);
       color: #fff;
-      padding: 4px 8px;
+      padding: 4px 12px;
       font-size: .75rem;
       font-weight: 600;
       border-radius: 12px;
@@ -140,55 +151,64 @@
 
     /* CONTENIDO */
     .icontec-card-content {
-      padding: 1rem;
+      padding: 1.25rem;
       text-align: left;
-      background-color: #cce5ff;
+      background-color: #fff;
     }
     .info-tags {
       display: flex;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
     .tag-modalidad, .tag-gratis {
       font-size: .75rem;
       font-weight: 600;
-      padding: 4px 8px;
+      padding: 4px 12px;
       border-radius: 12px;
       color: #fff;
     }
-    .tag-modalidad { background: #1565c0; }
-    .tag-gratis   { background: #FF4841; }
+    .tag-modalidad { 
+      background: #1565c0; 
+      font-family: 'Catamaran', sans-serif;
+    }
+    .tag-gratis   { 
+      background: #FF4841; 
+      font-family: 'Catamaran', sans-serif;
+    }
 
     .icontec-card-title {
       font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-weight: 700;
+      margin-bottom: 12px;
       color: #222;
+      line-height: 1.3;
     }
     .icontec-card-content p {
-      margin: 4px 0;
+      margin: 6px 0;
       font-size: .9rem;
-      color: #333;
+      color: #666;
+      font-weight: 400;
     }
 
     /* BOTÓN COMPACTO */
     .filter-course-card--buttons {
-      margin-top: 12px;
+      margin-top: 16px;
       text-align: center;
     }
     .btn-compact {
       background: #1ec773;
       color: #fff;
-      padding: 6px 12px;
-      font-size: .85rem;
+      padding: 8px 16px;
+      font-size: .9rem;
       border: none;
-      border-radius: 4px;
-      font-weight: 500;
+      border-radius: 6px;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       transition: background .2s, transform .2s;
+      font-family: 'Catamaran', sans-serif;
     }
     .btn-compact:hover {
       background: #0fa958;
@@ -200,8 +220,9 @@
 <body>
   <h1>Card de Educación</h1>
 
-
-  <div class="col-card" data-tipo="Curso" data-modalidad="Virtual">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
         <a href="#" class="icontec-card-link">
           <div class="icontec-card">
             <div class="icontec-card-img-container">
@@ -219,9 +240,9 @@
                 <span class="tag-gratis">+ Curso Gratis</span>
               </div>
               <div class="icontec-card-title">Normatividad Técnica</div>
-              <p>Inicio: 10 octubre</p>
-              <p>Duración: 4 semanas</p>
-              <p>Horario: Lun-Vie, 6:00 p.m. – 8:00 p.m.</p>
+              <p><strong>Inicio:</strong> 10 octubre</p>
+              <p><strong>Duración:</strong> 4 semanas</p>
+              <p><strong>Horario:</strong> Lun-Vie, 6:00 p.m. – 8:00 p.m.</p>
               <div class="filter-course-card--buttons">
                 <button class="btn-compact">
                   <i class="bi bi-cart3"></i> Agregar
@@ -231,8 +252,8 @@
           </div>
         </a>
       </div>
+    </div>
+  </div>
 
-
- 
 </body>
 </html>
