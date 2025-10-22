@@ -1,46 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Catálogo de Educación</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"/>
-
-  <!-- Bootstrap Icons -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    rel="stylesheet"/>
-
-  <!-- Google Fonts - Catamaran -->
-  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Educación - Demo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Catamaran -->
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
   <style>
-    /* RESET */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  :root {
+            --primary-blue: #1565c0;
+            --primary-green: #1ec773;
+            --gradient-primary: linear-gradient(45deg, #1565c0, #1ec773);
+        }
 
-    body {
-      font-family: 'Catamaran', sans-serif;
-      background: #f5f5f5;
-      color: #4d5974;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-      font-weight: 700;
-    }
-
-    /* GRID DE CARDS */
+    /* CARDS */
     .catalogo-campus-grid {
       display: flex;
       flex-wrap: wrap;
@@ -63,166 +44,187 @@
       }
     }
 
-    /* TARJETA */
-    .icontec-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .icontec-card {
-      position: relative;
-      overflow: hidden;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform .3s, box-shadow .3s, border-bottom .3s;
-      height: 100%;
-    }
-    .icontec-card-link:hover .icontec-card {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-      border-bottom: 3px solid #1ec773;
-    }
+    /* ESTILOS DE LAS CARDS MEJORADAS */
+        .icontec-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+   .icontec-card {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform .3s, box-shadow .3s, border-bottom .3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+ .icontec-card-link:hover .icontec-card {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            border-bottom: 3px solid var(--primary-green);
+        }
+
 
     /* IMAGEN */
-    .icontec-card-img-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 200px;
-    }
-    .icontec-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 8px 8px 0 0;
-      transition: filter .3s, transform .3s;
-    }
-    .icontec-card-link:hover .icontec-card-img {
-      filter: brightness(0.5) grayscale(10%);
-      transform: scale(1.05);
-    }
+     .icontec-card-img-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .icontec-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px 12px 0 0;
+            transition: filter .3s, transform .3s;
+        }
+     .icontec-card-link:hover .icontec-card-img {
+            filter: brightness(0.7) grayscale(10%);
+            transform: scale(1.05);
+        }
+
 
     /* OVERLAY */
-    .icontec-card-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 2;
-      clip-path: circle(0% at 50% 0);
-      transition:
-        clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94),
-        opacity .3s ease .1s;
-    }
-    .icontec-card-link:hover .icontec-card-overlay {
-      opacity: 1;
-      pointer-events: auto;
-      clip-path: circle(120% at 50% 0);
-    }
-    .icontec-card-overlay-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 0 15px;
-    }
+.icontec-card-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            clip-path: circle(0% at 50% 0);
+            transition: clip-path .6s cubic-bezier(0.25,0.46,0.45,0.94), opacity .3s ease .1s;
+        }
+
+        .icontec-card-link:hover .icontec-card-overlay {
+            opacity: 1;
+            pointer-events: auto;
+            clip-path: circle(120% at 50% 0);
+        }
+.icontec-card-overlay-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 15px;
+        }
 
     /* BURBUJA TIPO */
     .icontec-card-category {
-      position: absolute;
-      top: 8px; left: 8px;
-      background: linear-gradient(135deg, #1ec773, #0fa958);
-      color: #fff;
-      padding: 4px 12px;
-      font-size: .75rem;
-      font-weight: 600;
-      border-radius: 12px;
-      text-transform: uppercase;
-      box-shadow: 0 2px 8px rgba(30,199,115,0.3);
-      z-index: 3;
-    }
+            position: absolute;
+            top: 12px; left: 12px;
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 6px 12px;
+            font-size: .75rem;
+            font-weight: 600;
+            border-radius: 15px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(30,199,115,0.3);
+            z-index: 3;
+        }
 
     /* CONTENIDO */
     .icontec-card-content {
-      padding: 1.25rem;
-      text-align: left;
-      background-color: #fff;
-    }
-    .info-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .tag-modalidad, .tag-gratis {
-      font-size: .75rem;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 12px;
-      color: #fff;
-    }
-    .tag-modalidad { 
-      background: #1565c0; 
-      font-family: 'Catamaran', sans-serif;
-    }
-    .tag-gratis   { 
-      background: #FF4841; 
-      font-family: 'Catamaran', sans-serif;
-    }
+            padding: 1.5rem;
+            text-align: left;
+            background-color: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .icontec-card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #222;
-      line-height: 1.3;
-    }
-    .icontec-card-content p {
-      margin: 6px 0;
-      font-size: .9rem;
-      color: #666;
-      font-weight: 400;
-    }
+        .info-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag-modalidad, .tag-gratis {
+            font-size: .75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            color: #fff;
+        }
+     .tag-modalidad { 
+            background: var(--primary-blue); 
+        }
+
+        .tag-gratis { 
+            background: #FF4841; 
+        }
+
+        /* TÍTULO MEJORADO - EVITA DESBORDAMIENTO */
+        .icontec-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 2.6em;
+        }
+
+      .icontec-card-content p {
+            margin: 6px 0;
+            font-size: .9rem;
+            color: #666;
+            font-weight: 400;
+        }
+
 
     /* BOTÓN COMPACTO */
     .filter-course-card--buttons {
-      margin-top: 16px;
-      text-align: center;
-    }
-    .btn-compact {
-      background: #1ec773;
-      color: #fff;
-      padding: 8px 16px;
-      font-size: .9rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background .2s, transform .2s;
-      font-family: 'Catamaran', sans-serif;
-    }
-    .btn-compact:hover {
-      background: #0fa958;
-      transform: scale(1.05);
-    }
+            margin-top: auto;
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .btn-compact {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: .9rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+        .btn-compact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+        }
   </style>
 </head>
 
 <body>
-  <h1>Card de Educación</h1>
+  <h1 class="catalogo-title text-center mb-3" >Card de Educación</h1>
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="col-card ">
         <a href="#" class="icontec-card-link">
           <div class="icontec-card">
             <div class="icontec-card-img-container">
